@@ -94,7 +94,7 @@
           "loadingEditor": false,
           "status": "Stable",
           "mode": "markdown",
-          "content": "Report information about metadata validation status. Two types of validation are reported:\n\n* XML Schema validation\n\n* INSPIRE online validation tool results\n\n* INSPIRE online validation completeness indicator",
+          "content": "Report information about metadata validation status. Two types of validation are reported:\n\n* XML Schema validation\n\n* INSPIRE online validation tool results\n\n* INSPIRE online validation completeness indicator\n\n\nA record is considered valid for INSPIRE if completeness indicator is above 75% (see isAboveTheshold field).",
           "style": {}
         }
       ]
@@ -730,6 +730,7 @@
           "fields": [
             "territory",
             "isValid",
+            "isAboveThreshold",
             "isSchemaValid",
             "resourceType"
           ],
@@ -775,12 +776,13 @@
           "transpose_show": true,
           "transposed": false,
           "show_queries": true,
-          "title": "Completeness indicator - experimental"
+          "title": "Completeness indicator - experimental",
+          "sortBy": "count"
         }
       ]
     },
     {
-      "title": "Events",
+      "title": "Record details",
       "height": "250px",
       "editable": true,
       "collapse": false,
@@ -817,14 +819,14 @@
             "ids": [
               0
             ],
-            "query": "q=*%3A*&fq=documentType:metadata&sort=id desc&wt=json&rows=200&fl=resourceTitle,completenessIndicator,isValid,isSchemaValid,id",
-            "basic_query": "q=*%3A*&fq=documentType:metadata&sort=id desc&fl=resourceTitle,completenessIndicator,isValid,isSchemaValid,id"
+            "query": "q=*%3A*&fq=documentType:metadata&sort=resourceTitle asc&wt=json&rows=200&fl=resourceTitle,completenessIndicator,isValid,isSchemaValid,id",
+            "basic_query": "q=*%3A*&fq=documentType:metadata&sort=resourceTitle asc&fl=resourceTitle,completenessIndicator,isValid,isSchemaValid,id"
           },
           "field_list": false,
           "status": "Stable",
           "trimFactor": 300,
           "normTimes": true,
-          "title": "Events",
+          "title": "Record details",
           "saveOption": "json",
           "exportSize": 200,
           "exportAll": true,
@@ -833,8 +835,8 @@
           "imgFieldWidth": "auto",
           "imgFieldHeight": "85px",
           "sort": [
-            "id",
-            "desc"
+            "resourceTitle",
+            "asc"
           ],
           "isLoadingImportantFieldOnly": true,
           "important_fields": [
@@ -842,7 +844,8 @@
             "completenessIndicator",
             "isValid",
             "isSchemaValid",
-            "id"
+            "id",
+            "validReport"
           ],
           "show_queries": true,
           "couchbase": {
