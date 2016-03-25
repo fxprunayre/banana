@@ -1,5 +1,5 @@
 {
-  "title": "INSPIRE Reporting 2013 - Ref. year 2012 - Metadata availability and conformity",
+  "title": "INSPIRE Reporting 2016 - Ref. year 2015 - Metadata availability and conformity",
   "services": {
     "query": {
       "idQueue": [
@@ -147,7 +147,7 @@
           "loadingEditor": false,
           "status": "Stable",
           "mode": "markdown",
-          "content": "This section describes the existence of metadata records on data sets and services with statistics on each Annex.\n\n* Metadata availability and conformity\n\n* [Spatial data sets availability and conformity](#/dashboard/solr/INSPIRE Reporting 2013 - Ref. year 2012 - Spatial data sets availability and conformity)\n\n* [Network services availability and conformity](#/dashboard/solr/INSPIRE Reporting 2013 - Ref. year 2012 - Network services availability and conformity)\n\n[2010](#/dashboard/solr/INSPIRE Reporting 2011 - Ref. year 2010 - Metadata availability and conformity) |\n[2011](#/dashboard/solr/INSPIRE Reporting 2012 - Ref. year 2011 - Metadata availability and conformity) |\n2012 |\n[2013](#/dashboard/solr/INSPIRE Reporting 2014 - Ref. year 2013 - Metadata availability and conformity) |\n[2014](#/dashboard/solr/INSPIRE Reporting 2015 - Ref. year 2014 - Metadata availability and conformity) |\n[2015](#/dashboard/solr/INSPIRE Reporting 2016 - Ref. year 2015 - Metadata availability and conformity)",
+          "content": "This section describes the existence of metadata records on data sets and services with statistics on each Annex.\n\n* Metadata availability and conformity\n\n* [Spatial data sets availability and conformity](#/dashboard/solr/INSPIRE Reporting 2016 - Ref. year 2015 - Spatial data sets availability and conformity)\n\n* [Network services availability and conformity](#/dashboard/solr/INSPIRE Reporting 2016 - Ref. year 2015 - Network services availability and conformity)\n\n[2010](#/dashboard/solr/INSPIRE Reporting 2011 - Ref. year 2010 - Metadata availability and conformity) |\n[2011](#/dashboard/solr/INSPIRE Reporting 2012 - Ref. year 2011 - Metadata availability and conformity) |\n[2012](#/dashboard/solr/INSPIRE Reporting 2013 - Ref. year 2012 - Metadata availability and conformity) |\n[2013](#/dashboard/solr/INSPIRE Reporting 2014 - Ref. year 2013 - Metadata availability and conformity) |\n[2014](#/dashboard/solr/INSPIRE Reporting 2015 - Ref. year 2014 - Metadata availability and conformity) |\n2015",
           "style": {}
         }
       ]
@@ -667,6 +667,6 @@
       "dashboard",
       "data"
     ],
-    "global_params": "&fq=%2BdocumentType:indicator %2BreportingYear:2012"
+    "global_params": "&fq=%2BdocumentType:indicator %2BreportingYear:2015"
   }
 }
