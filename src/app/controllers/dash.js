@@ -31,7 +31,7 @@ function (angular, config, _) {
     }, {
       id: 'harvesting',
       icon: 'glyphicon-download-alt',
-      url: '../#/harvesting'
+      url: '../#/harvesting/manage'
     }, {
       id: 'admin',
       icon: 'glyphicon-cog',
