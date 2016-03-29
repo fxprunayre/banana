@@ -42,11 +42,10 @@
       </form>
     </li>
     <li ng-show="dashboard.current.loader.load_elasticsearch">
-      <h5>Solr</h5>
+      <h5>Stored dashboards</h5>
       <form class="input-append" style="width:100%;">
         <input type="text" ng-model="elasticsearch.query" ng-click="$event.stopPropagation()" ng-change="elasticsearch_dblist('title:'+elasticsearch.query+'*')" placeholder="Type to filter" class="form-control">
       </form>
-      <h6 ng-show="elasticsearch.dashboards.length">Stored dashboards</h6>
       <h6 ng-hide="elasticsearch.dashboards.length">No dashboards matching your query found</h6>
       <table class="table table-condensed table-striped">
         <tbody><tr ng-repeat="row in elasticsearch.dashboards | orderBy:['id'] | limitTo:dashboard.current.loader.load_elasticsearch_size">
