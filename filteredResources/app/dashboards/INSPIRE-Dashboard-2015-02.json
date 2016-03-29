@@ -1,5 +1,5 @@
 {
-  "title": "INSPIRE Reporting 2011 - Ref. year 2010 - Network services availability and conformity",
+  "title": "INSPIRE Reporting 2016 - Ref. year 2015 - Network services availability and conformity",
   "services": {
     "query": {
       "idQueue": [
@@ -144,7 +144,7 @@
           "loadingEditor": false,
           "status": "Stable",
           "mode": "markdown",
-          "content": "This section describes the existence of metadata records on data sets and services with statistics on each Annex.\n\n* [Metadata availability and conformity](#/dashboard/solr/INSPIRE Reporting 2011 - Ref. year 2010 - Metadata availability and conformity)\n\n* [Spatial data sets availability and conformity](#/dashboard/solr/INSPIRE Reporting 2011 - Ref. year 2010 - Spatial data sets availability and conformity)\n\n* Network services availability and conformity\n\n2010 |\n[2011](#/dashboard/solr/INSPIRE Reporting 2012 - Ref. year 2011 - Network services availability and conformity) |\n[2012](#/dashboard/solr/INSPIRE Reporting 2013 - Ref. year 2012 - Network services availability and conformity) |\n[2013](#/dashboard/solr/INSPIRE Reporting 2014 - Ref. year 2013 - Network services availability and conformity) |\n[2014](#/dashboard/solr/INSPIRE Reporting 2015 - Ref. year 2014 - Network services availability and conformity) |\n[2015](#/dashboard/solr/INSPIRE Reporting 2016 - Ref. year 2015 - Network services availability and conformity)",
+          "content": "This section describes the existence of metadata records on data sets and services with statistics on each Annex.\n\n* [Metadata availability and conformity](#/dashboard/solr/INSPIRE Reporting 2016 - Ref. year 2015 - Metadata availability and conformity)\n\n* [Spatial data sets availability and conformity](#/dashboard/solr/INSPIRE Reporting 2016 - Ref. year 2015 - Spatial data sets availability and conformity)\n\n* Network services availability and conformity\n\n[2010](#/dashboard/solr/INSPIRE Reporting 2011 - Ref. year 2010 - Network services availability and conformity) |\n[2011](#/dashboard/solr/INSPIRE Reporting 2012 - Ref. year 2011 - Network services availability and conformity) |\n[2012](#/dashboard/solr/INSPIRE Reporting 2013 - Ref. year 2012 - Network services availability and conformity) |\n[2013](#/dashboard/solr/INSPIRE Reporting 2014 - Ref. year 2013 - Network services availability and conformity) |\n[2014](#/dashboard/solr/INSPIRE Reporting 2015 - Ref. year 2014 - Network services availability and conformity) |\n2015",
           "style": {}
         }
       ]
@@ -272,44 +272,6 @@
               0
             ],
             "query": "q=*%3A*&fq=documentType:indicator&wt=json&&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
-            "custom": "&fq=indicatorName:\"nsi41\""
-          },
-          "mode": "mean",
-          "field": "territory",
-          "stats_field": "indicatorValue",
-          "decimal_points": 2,
-          "map": "europe",
-          "colors": [
-            "#A0E2E2",
-            "#dcff37",
-            "#265656"
-          ],
-          "backgroundColor": "",
-          "fillColor": "#dedede",
-          "isZoomOnScrollEnabled": false,
-          "isLegendDisplayed": true,
-          "isZoomControlEnabled": true,
-          "normalizeFunction": "linear",
-          "size": 100,
-          "exclude": [],
-          "spyable": false,
-          "index_limit": 0,
-          "title": "Conformity of discovery network services - nsi41",
-          "min_value": 0,
-          "max_value": 1
-        },
-        {
-          "error": false,
-          "span": 6,
-          "editable": false,
-          "type": "map",
-          "loadingEditor": false,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0
-            ],
-            "query": "q=*%3A*&fq=documentType:indicator&wt=json&&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
             "custom": "&fq=indicatorName:\"nsi42\""
           },
           "mode": "mean",
@@ -333,6 +295,44 @@
           "spyable": false,
           "index_limit": 0,
           "title": "Conformity of view network services - nsi42",
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "error": false,
+          "span": 6,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=documentType:indicator&wt=json&&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=indicatorName:\"nsi41\""
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": true,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of discovery network services - nsi41",
           "min_value": 0,
           "max_value": 1
         }
@@ -417,6 +417,6 @@
       "dashboard",
       "data"
     ],
-    "global_params": "&fq=%2BdocumentType:indicator %2BreportingYear:2010"
+    "global_params": "&fq=%2BdocumentType:indicator %2BreportingYear:2015"
   }
 }

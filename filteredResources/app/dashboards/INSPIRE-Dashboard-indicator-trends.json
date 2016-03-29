@@ -63,7 +63,7 @@
           "loadingEditor": false,
           "status": "Stable",
           "mode": "markdown",
-          "content": "This dashboard highlights main indicators trends.\n\n[More details with maps](#/dashboard/solr/INSPIRE%20indicator%20trends%20(map))",          "style": {}
+          "content": "This dashboard highlights main indicators trends.\n\nMore details with maps [2010-2012](INSPIRE indicator trends 2011-2012 (map)) & [2013-2015](#/dashboard/solr/INSPIRE indicator trends 2013-2015 (map)",          "style": {}
         },
         {
           "error": "",

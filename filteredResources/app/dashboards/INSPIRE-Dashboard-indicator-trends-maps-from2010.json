@@ -266,6 +266,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi1\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi1 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },
@@ -480,6 +518,44 @@
           "spyable": false,
           "index_limit": 0,
           "title": "MDi11 - 2014",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi11\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi11 - 2015",
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
@@ -700,6 +776,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi12\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi12 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },
@@ -917,6 +1031,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi13\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi13 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -1130,6 +1282,44 @@
           "spyable": false,
           "index_limit": 0,
           "title": "MDi14 - 2014",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"MDi14\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi14 - 2015",
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
@@ -1369,6 +1559,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi2\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi2 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -1585,6 +1813,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi21\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi21 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -1798,6 +2064,44 @@
           "spyable": false,
           "index_limit": 0,
           "title": "MDi22 - 2014",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi22\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi22 - 2015",
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
@@ -2019,6 +2323,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi23\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi23 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -2234,6 +2576,44 @@
           "spyable": false,
           "index_limit": 0,
           "title": "MDi24 - 2014",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"MDi24\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "MDi24 - 2015",
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
@@ -2473,6 +2853,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi1\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "NSi1 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     }, {
@@ -2708,6 +3126,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi2\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "DSi2 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -2923,6 +3379,44 @@
           "spyable": false,
           "index_limit": 0,
           "title": "DSi21 - 2014",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi21\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "DSi21 - 2015",
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
@@ -3142,6 +3636,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi22\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "DSi22 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -3355,6 +3887,44 @@
           "spyable": false,
           "index_limit": 0,
           "title": "DSi23 - 2014",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi23\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "DSi23 - 2015",
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
@@ -3594,6 +4164,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi21\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "NSi21 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -3810,6 +4418,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi22\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "NSi22 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -4023,6 +4669,44 @@
           "spyable": false,
           "index_limit": 0,
           "title": "NSi2 - 2014",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi2\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "NSi2 - 2015",
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
@@ -4262,6 +4946,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi41\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "NSi41 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -4478,6 +5200,44 @@
           "show_queries": true,
           "min_value": 0,
           "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi42\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "NSi42 - 2015",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
         }
       ]
     },{
@@ -4691,6 +5451,44 @@
           "spyable": false,
           "index_limit": 0,
           "title": "NSi43 - 2014",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 2,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi43\"+%2BreportingYear:2015"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "NSi43 - 2015",
           "show_queries": true,
           "min_value": 0,
           "max_value": 1

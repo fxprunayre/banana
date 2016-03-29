@@ -1,0 +1,2773 @@
+{
+  "title": "INSPIRE indicator trends 2010-2012 (map)",
+  "services": {
+    "query": {
+      "idQueue": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "list": {
+        "0": {
+          "query": "*:*",
+          "alias": "",
+          "color": "#7EB26D",
+          "id": 0,
+          "pin": false,
+          "type": "lucene"
+        }
+      },
+      "ids": [
+        0
+      ]
+    },
+    "filter": {
+      "idQueue": [
+        0,
+        1,
+        2
+      ],
+      "list": {},
+      "ids": []
+    }
+  },
+  "rows": [
+    {
+      "title": "Existence of metadata (spatial data sets)",
+      "height": "50px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "error": false,
+          "span": 12,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "status": "Stable",
+          "mode": "markdown",
+          "content": "# Existence of metadata (spatial data sets)\n 2010-2012 | [2013-2015](#/dashboard/solr/INSPIRE indicator trends 2013-2015 (map))",
+          "style": {}
+        }
+      ]
+    },
+    {
+      "title": "Existence of metadata (data sets and services) - mdi1",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi1\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (data sets and services) - mdi1 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi1\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (data sets and services) - mdi1 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi1\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (data sets and services) - mdi1 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Existence of metadata (Annex I) - MDi11",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi11\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (Annex I) - MDi11 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi11\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (Annex I) - MDi11 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi11\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (Annex I) - MDi11 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Existence of metadata (Annex II) - MDi12",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi12\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (Annex II) - MDi12 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi12\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (Annex II) - MDi12 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi12\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (Annex II) - MDi12 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Existence of metadata (Annex III) - MDi13",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi13\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (Annex III) - MDi13 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi13\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (Annex III) - MDi13 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi13\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (Annex III) - MDi13 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Existence of metadata (spatial data services) - MDi14",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"MDi14\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (spatial data services) - MDi14 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"MDi14\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (spatial data services) - MDi14 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"MDi14\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Existence of metadata (spatial data services) - MDi14 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of metadata (spatial data sets)",
+      "height": "50px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "error": false,
+          "span": 12,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "status": "Stable",
+          "mode": "markdown",
+          "content": "# Conformity of metadata (spatial data sets)",
+          "style": {}
+        }
+      ]
+    },
+    {
+      "title": "Conformity of metadata (data sets and services) - mdi2",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi2\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (data sets and services) - mdi2 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi2\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (data sets and services) - mdi2 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi2\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (data sets and services) - mdi2 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of metadata (Annex I) - MDi21",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi21\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (Annex I) - MDi21 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi21\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (Annex I) - MDi21 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi21\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (Annex I) - MDi21 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of metadata (Annex II) - MDi22",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi22\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (Annex II) - MDi22 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi22\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (Annex II) - MDi22 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi22\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (Annex II) - MDi22 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of metadata (Annex III) - MDi23",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi23\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (Annex III) - MDi23 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi23\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (Annex III) - MDi23 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"mdi23\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (Annex III) - MDi23 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of metadata (spatial data services) - MDi24",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"MDi24\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (spatial data services) - MDi24 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"MDi24\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (spatial data services) - MDi24 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"MDi24\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of metadata (spatial data services) - MDi24 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Accessibility of metadata through discovery services",
+      "height": "50px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "error": false,
+          "span": 12,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "status": "Stable",
+          "mode": "markdown",
+          "content": "# Accessibility of metadata through discovery services",
+          "style": {}
+        }
+      ]
+    },
+    {
+      "title": "Accessibility of metadata through discovery services - NSi1",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi1\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of metadata through discovery services - NSi1 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi1\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of metadata through discovery services - NSi1 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi1\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of metadata through discovery services - NSi1 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of spatial data sets",
+      "height": "50px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "error": false,
+          "span": 12,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "status": "Stable",
+          "mode": "markdown",
+          "content": "# Conformity of spatial data sets",
+          "style": {}
+        }
+      ]
+    },
+    {
+      "title": "Conformity of spatial data sets (all annexes) - DSi2",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi2\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (all annexes) - DSi2 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi2\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (all annexes) - DSi2 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi2\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (all annexes) - DSi2 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of spatial data sets (Annex I) - DSi21",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi21\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (Annex I) - DSi21 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi21\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (Annex I) - DSi21 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi21\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (Annex I) - DSi21 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of spatial data sets (Annex II) - DSi22",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi22\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (Annex II) - DSi22 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi22\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (Annex II) - DSi22 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi22\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (Annex II) - DSi22 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of spatial data sets (Annex III) - DSi23",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi23\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (Annex III) - DSi23 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi23\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (Annex III) - DSi23 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"DSi23\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of spatial data sets (Annex III) - DSi23 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Dataset availability through services",
+      "height": "50px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "error": false,
+          "span": 12,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "status": "Stable",
+          "mode": "markdown",
+          "content": "# Accessibility of spatial data sets through services",
+          "style": {}
+        }
+      ]
+    },
+    {
+      "title": "Accessibility of spatial data sets through view services - NSi21",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi21\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of spatial data sets through view services - NSi21 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi21\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of spatial data sets through view services - NSi21 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi21\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of spatial data sets through view services - NSi21 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Accessibility of spatial data sets through download services - NSi22",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi22\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of spatial data sets through download services - NSi22 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi22\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of spatial data sets through download services - NSi22 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi22\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of spatial data sets through download services - NSi22 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Accessibility of spatial data sets through view and download services - NSi2",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi2\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of spatial data sets through view and download services - NSi2 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi2\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of spatial data sets through view and download services - NSi2 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi2\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Accessibility of spatial data sets through view and download services - NSi2 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of services",
+      "height": "50px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "error": false,
+          "span": 12,
+          "editable": false,
+          "type": "text",
+          "loadingEditor": false,
+          "status": "Stable",
+          "mode": "markdown",
+          "content": "# Conformity of services",
+          "style": {}
+        }
+      ]
+    },
+    {
+      "title": "Conformity of discovery services - NSi41",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi41\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of discovery services - NSi41 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi41\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of discovery services - NSi41 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi41\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of discovery services - NSi41 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of view services - NSi42",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi42\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of view services - NSi42 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi42\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of view services - NSi42 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi42\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of view services - NSi42 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    },
+    {
+      "title": "Conformity of download services - NSi43",
+      "height": "350px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi43\"+%2BreportingYear:2010"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of download services - NSi43 - 2010",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi43\"+%2BreportingYear:2011"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": false,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of download services - NSi43 - 2011",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        },
+        {
+          "span": 4,
+          "editable": false,
+          "type": "map",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=+documentType:indicator&wt=json&rows=0&stats=true&stats.facet=territory&stats.field=indicatorValue",
+            "custom": "&fq=%2BindicatorName:\"NSi43\"+%2BreportingYear:2012"
+          },
+          "mode": "mean",
+          "field": "territory",
+          "stats_field": "indicatorValue",
+          "decimal_points": 2,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#dcff37",
+            "#265656"
+          ],
+          "backgroundColor": "",
+          "fillColor": "#dedede",
+          "isZoomOnScrollEnabled": false,
+          "isLegendDisplayed": true,
+          "isZoomControlEnabled": false,
+          "normalizeFunction": "linear",
+          "size": 100,
+          "exclude": [],
+          "spyable": false,
+          "index_limit": 0,
+          "title": "Conformity of download services - NSi43 - 2012",
+          "show_queries": true,
+          "min_value": 0,
+          "max_value": 1
+        }
+      ]
+    }
+  ],
+  "editable": false,
+  "index": {
+    "interval": "none",
+    "pattern": "[logstash-]YYYY.MM.DD",
+    "default": "_all"
+  },
+  "style": "light",
+  "failover": false,
+  "panel_hints": true,
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": true,
+    "save_local": true,
+    "save_default": true,
+    "save_temp": true,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "30d",
+    "load_gist": true,
+    "load_elasticsearch": true,
+    "load_elasticsearch_size": 30,
+    "load_local": true,
+    "hide": false,
+    "dropdown_collections": false
+  },
+  "solr": {
+    "server": "/${solr.webapp.name}/",
+    "core_name": "${solr.core.data}",
+    "core_list": [
+      "dashboard",
+      "data"
+    ],
+    "global_params": "&fq=+documentType:indicator"
+  }
+}
