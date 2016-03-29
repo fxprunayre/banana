@@ -845,7 +845,8 @@
             "isValid",
             "isSchemaValid",
             "id",
-            "validReport"
+            "validReport",
+            "validInfo"
           ],
           "show_queries": true,
           "couchbase": {
