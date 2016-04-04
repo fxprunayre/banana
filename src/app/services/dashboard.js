@@ -371,6 +371,9 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
         self.refresh();
       }
 
+      // update browser window/tab title to reflect current dashboard's title
+      document.title = dashboard.title;
+
       return true;
     };
 
