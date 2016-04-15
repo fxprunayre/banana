@@ -41,7 +41,7 @@
       "panels": [
         {
           "error": false,
-          "span": 4,
+          "span": 8,
           "editable": true,
           "group": [
             "default"
@@ -49,7 +49,9 @@
           "type": "query",
           "label": "Search",
           "history": [
-            "*:*"
+            "*:*",
+            "",
+            "-isValid:[*TO *]"
           ],
           "remember": 10,
           "pinned": true,
@@ -85,17 +87,6 @@
           "title": "Total Hits",
           "show_queries": true,
           "mode": "count"
-        },
-        {
-          "error": false,
-          "span": 4,
-          "editable": true,
-          "type": "text",
-          "loadingEditor": false,
-          "status": "Stable",
-          "mode": "markdown",
-          "content": "Report information about metadata validation status. Two types of validation are reported:\n\n* XML Schema validation\n\n* INSPIRE online validation tool results\n\n* INSPIRE online validation completeness indicator\n\n\nA record is considered valid for INSPIRE if completeness indicator is above 75% (see isAboveTheshold field).",
-          "style": {}
         }
       ]
     },
@@ -108,138 +99,83 @@
       "panels": [
         {
           "error": false,
-          "span": 12,
+          "span": 5,
           "editable": true,
           "type": "filtering",
           "loadingEditor": false,
           "spyable": true
-        }
-      ]
-    },
-    {
-      "title": "Validation",
-      "height": "450px",
-      "editable": true,
-      "collapse": false,
-      "collapsable": true,
-      "panels": [
+        },
         {
-          "span": 4,
+          "span": 5,
           "editable": true,
-          "type": "terms",
+          "type": "facet",
+          "loadingEditor": false,
+          "status": "Stable",
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=documentType:metadata&facet=true&facet.field=territory&facet.field=isValid&facet.field=isSchemaValid&facet.field=resourceType&facet.field=isAboveThreshold&wt=json",
+            "basic_query": "q=*%3A*&fq=documentType:metadata&facet=true&facet.field=territory&facet.field=isValid&facet.field=isSchemaValid&facet.field=resourceType&facet.field=isAboveThreshold",
+            "custom": ""
+          },
+          "group": "default",
+          "style": {
+            "font-size": "9pt"
+          },
+          "overflow": "min-height",
+          "fields": [
+            "territory",
+            "isValid",
+            "isSchemaValid",
+            "resourceType",
+            "isAboveThreshold"
+          ],
+          "field_list": true,
+          "spyable": true,
+          "facet_limit": 30,
+          "foundResults": true,
+          "header_title": "Limit Your Search",
+          "toggle_element": "territory",
+          "show_queries": true,
+          "offset": 0,
+          "exportSize": null
+        },
+        {
+          "span": 2,
+          "editable": true,
+          "type": "tagcloud",
           "loadingEditor": false,
           "queries": {
             "mode": "all",
             "ids": [
               0
             ],
-            "query": "q=*%3A*&fq=documentType:metadata&wt=json&rows=0&facet=true&facet.field=isSchemaValid&facet.limit=3&facet.missing=true&f.isSchemaValid.facet.sort=count",
+            "query": "q=*%3A*&fq=documentType:metadata&wt=json&rows=0&facet=true&facet.field=territory&facet.limit=30",
             "custom": ""
           },
-          "mode": "count",
-          "field": "isSchemaValid",
-          "stats_field": "",
-          "decimal_points": 0,
+          "field": "territory",
           "exclude": [],
-          "missing": true,
-          "other": false,
-          "size": 3,
-          "order": "descending",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "logAxis": false,
-          "arrangement": "horizontal",
-          "chart": "pie",
-          "counter_pos": "above",
-          "lastColor": "",
+          "size": 30,
+          "alignment": "horizontal",
+          "fontScale": 20,
+          "isSizeAdjusted": false,
+          "isCountDisplayed": false,
           "spyable": true,
-          "show_queries": true,
-          "chartColors": [
-            "#7EB26D",
-            "#EAB839",
-            "#6ED0E0",
-            "#EF843C",
-            "#E24D42",
-            "#1F78C1",
-            "#BA43A9",
-            "#705DA0",
-            "#508642",
-            "#CCA300",
-            "#447EBC",
-            "#C15C17",
-            "#890F02",
-            "#0A437C",
-            "#6D1F62",
-            "#584477",
-            "#B7DBAB",
-            "#F4D598",
-            "#70DBED",
-            "#F9BA8F",
-            "#F29191",
-            "#82B5D8",
-            "#E5A8E2",
-            "#AEA2E0",
-            "#629E51",
-            "#E5AC0E",
-            "#64B0C8",
-            "#E0752D",
-            "#BF1B00",
-            "#0A50A1",
-            "#962D82",
-            "#614D93",
-            "#9AC48A",
-            "#F2C96D",
-            "#65C5DB",
-            "#F9934E",
-            "#EA6460",
-            "#5195CE",
-            "#D683CE",
-            "#806EB7",
-            "#3F6833",
-            "#967302",
-            "#2F575E",
-            "#99440A",
-            "#58140C",
-            "#052B51",
-            "#511749",
-            "#3F2B5B",
-            "#E0F9D7",
-            "#FCEACA",
-            "#CFFAFF",
-            "#F9E2D2",
-            "#FCE2DE",
-            "#BADFF4",
-            "#F9D9F9",
-            "#DEDAF7"
-          ],
-          "title": "XML Schema Validation report",
-          "sortBy": "count",
-          "colorMode": "listWithValues",
-          "chartColorPalette": [
-            {
-              "label": "true",
-              "color": "#7eb26d"
-            },
-            {
-              "label": "Missing field",
-              "color": "#aaaaaa"
-            },
-            {
-              "label": "Other values",
-              "color": "#aaaaaa"
-            },
-            {
-              "label": "false",
-              "color": "#e24d42"
-            }
-          ]
-        },
+          "show_queries": true
+        }
+      ]
+    },
+    {
+      "title": "INSPIRE Validation",
+      "height": "450px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
         {
-          "span": 4,
+          "span": 5,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -270,7 +206,7 @@
           "arrangement": "horizontal",
           "chart": "pie",
           "counter_pos": "above",
-          "lastColor": "",
+          "lastColor": "#aaa",
           "spyable": true,
           "show_queries": true,
           "chartColors": [
@@ -354,7 +290,7 @@
           ]
         },
         {
-          "span": 4,
+          "span": 5,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -385,7 +321,7 @@
           "arrangement": "horizontal",
           "chart": "pie",
           "counter_pos": "above",
-          "lastColor": "",
+          "lastColor": "#e24d42",
           "spyable": true,
           "show_queries": true,
           "chartColors": [
@@ -467,6 +403,17 @@
               "color": "#aaaaaa"
             }
           ]
+        },
+        {
+          "error": false,
+          "span": 2,
+          "editable": true,
+          "type": "text",
+          "loadingEditor": false,
+          "status": "Stable",
+          "mode": "markdown",
+          "content": "Validation is computed using the [INSPIRE validator](http://inspire-geoportal.ec.europa.eu/validator2/).\n\nA record is considered valid for INSPIRE if completeness indicator is above 75% (see isAboveTheshold field).\n\nEven if completeness indicator is 100%, a record may be displayed as invalid in the INSPIRE validation chart due to INSPIRE validation warnings (eg. if the URL of a coupled resource point to an invalid link).",
+          "style": {}
         }
       ]
     },
@@ -478,7 +425,7 @@
       "collapsable": true,
       "panels": [
         {
-          "span": 4,
+          "span": 5,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -593,7 +540,7 @@
           "title": "Conformant data sets"
         },
         {
-          "span": 4,
+          "span": 5,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -708,41 +655,15 @@
           "title": "Conformant services"
         },
         {
-          "span": 4,
+          "error": false,
+          "span": 2,
           "editable": true,
-          "type": "facet",
+          "type": "text",
           "loadingEditor": false,
           "status": "Stable",
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0
-            ],
-            "query": "q=*%3A*&fq=documentType:metadata&facet=true&facet.field=territory&facet.field=isValid&facet.field=isSchemaValid&facet.field=resourceType&wt=json",
-            "basic_query": "q=*%3A*&fq=documentType:metadata&facet=true&facet.field=territory&facet.field=isValid&facet.field=isSchemaValid&facet.field=resourceType",
-            "custom": ""
-          },
-          "group": "default",
-          "style": {
-            "font-size": "9pt"
-          },
-          "overflow": "min-height",
-          "fields": [
-            "territory",
-            "isValid",
-            "isAboveThreshold",
-            "isSchemaValid",
-            "resourceType"
-          ],
-          "field_list": true,
-          "spyable": true,
-          "facet_limit": 30,
-          "foundResults": true,
-          "header_title": "Limit Your Search",
-          "toggle_element": "territory",
-          "show_queries": true,
-          "offset": 0,
-          "exportSize": null
+          "mode": "markdown",
+          "content": "Conformity of datasets and services is declared in the metadata records.",
+          "style": {}
         }
       ]
     },
@@ -763,7 +684,7 @@
             "ids": [
               0
             ],
-            "query": "q=*%3A*&fq=documentType:metadata&wt=json&rows=0&facet=true&facet.pivot=territory,completenessIndicator&facet.limit=30&facet.pivot.mincount=0",
+            "query": "q=*%3A*&fq=documentType:metadata&wt=json&rows=0&facet=true&facet.pivot=territory,completenessIndicator&facet.limit=30&facet.pivot.mincount=0&facet.sort=count",
             "custom": ""
           },
           "size": 0,
@@ -778,6 +699,130 @@
           "show_queries": true,
           "title": "Completeness indicator - experimental",
           "sortBy": "count"
+        }
+      ]
+    },
+    {
+      "title": "XSD Schema validation",
+      "height": "350px",
+      "editable": true,
+      "collapse": true,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 5,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0
+            ],
+            "query": "q=*%3A*&fq=documentType:metadata&wt=json&rows=0&facet=true&facet.field=isSchemaValid&facet.limit=3&facet.missing=true&f.isSchemaValid.facet.sort=count",
+            "custom": ""
+          },
+          "mode": "count",
+          "field": "isSchemaValid",
+          "stats_field": "",
+          "decimal_points": 0,
+          "exclude": [],
+          "missing": true,
+          "other": false,
+          "size": 3,
+          "order": "descending",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "logAxis": false,
+          "arrangement": "horizontal",
+          "chart": "pie",
+          "counter_pos": "above",
+          "lastColor": "",
+          "spyable": true,
+          "show_queries": true,
+          "chartColors": [
+            "#7EB26D",
+            "#EAB839",
+            "#6ED0E0",
+            "#EF843C",
+            "#E24D42",
+            "#1F78C1",
+            "#BA43A9",
+            "#705DA0",
+            "#508642",
+            "#CCA300",
+            "#447EBC",
+            "#C15C17",
+            "#890F02",
+            "#0A437C",
+            "#6D1F62",
+            "#584477",
+            "#B7DBAB",
+            "#F4D598",
+            "#70DBED",
+            "#F9BA8F",
+            "#F29191",
+            "#82B5D8",
+            "#E5A8E2",
+            "#AEA2E0",
+            "#629E51",
+            "#E5AC0E",
+            "#64B0C8",
+            "#E0752D",
+            "#BF1B00",
+            "#0A50A1",
+            "#962D82",
+            "#614D93",
+            "#9AC48A",
+            "#F2C96D",
+            "#65C5DB",
+            "#F9934E",
+            "#EA6460",
+            "#5195CE",
+            "#D683CE",
+            "#806EB7",
+            "#3F6833",
+            "#967302",
+            "#2F575E",
+            "#99440A",
+            "#58140C",
+            "#052B51",
+            "#511749",
+            "#3F2B5B",
+            "#E0F9D7",
+            "#FCEACA",
+            "#CFFAFF",
+            "#F9E2D2",
+            "#FCE2DE",
+            "#BADFF4",
+            "#F9D9F9",
+            "#DEDAF7"
+          ],
+          "title": "XML Schema Validation report",
+          "sortBy": "count",
+          "colorMode": "listWithValues",
+          "chartColorPalette": [
+            {
+              "label": "true",
+              "color": "#7eb26d"
+            },
+            {
+              "label": "Missing field",
+              "color": "#aaaaaa"
+            },
+            {
+              "label": "Other values",
+              "color": "#aaaaaa"
+            },
+            {
+              "label": "false",
+              "color": "#e24d42"
+            }
+          ]
         }
       ]
     },
@@ -819,10 +864,10 @@
             "ids": [
               0
             ],
-            "query": "q=*%3A*&fq=documentType:metadata&sort=resourceTitle asc&wt=json&rows=200&fl=resourceTitle,completenessIndicator,isValid,isSchemaValid,id",
-            "basic_query": "q=*%3A*&fq=documentType:metadata&sort=resourceTitle asc&fl=resourceTitle,completenessIndicator,isValid,isSchemaValid,id"
+            "query": "q=*%3A*&fq=documentType:metadata&sort=isValid desc&wt=json&rows=200&fl=resourceTitle,completenessIndicator,isValid,isSchemaValid,id,validReport,validInfo",
+            "basic_query": "q=*%3A*&fq=documentType:metadata&sort=isValid desc&fl=resourceTitle,completenessIndicator,isValid,isSchemaValid,id,validReport,validInfo"
           },
-          "field_list": false,
+          "field_list": true,
           "status": "Stable",
           "trimFactor": 300,
           "normTimes": true,
@@ -835,8 +880,8 @@
           "imgFieldWidth": "auto",
           "imgFieldHeight": "85px",
           "sort": [
-            "resourceTitle",
-            "asc"
+            "isValid",
+            "desc"
           ],
           "isLoadingImportantFieldOnly": true,
           "important_fields": [
@@ -863,7 +908,10 @@
               "key": "expand",
               "value": "min-height"
             }
-          ]
+          ],
+          "enableHyperlink": true,
+          "hyperlinkColumnForURI": "pointOfTruthURL",
+          "hyperlinkColumnHeader": "Link"
         }
       ]
     }
