@@ -6,7 +6,6 @@ define([
   'jquery',
   'underscore',
   'require',
-
   'elasticjs',
   'solrjs',
   'bootstrap',
@@ -18,6 +17,7 @@ define([
   'angular-dragdrop',
   'angular-translate',
   'angular-translate-loader-static-files',
+  'angular-gettext',
   'extend-jquery'
 ],
 function (angular, $, _, appLevelRequire) {
@@ -105,7 +105,7 @@ function (angular, $, _, appLevelRequire) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
   }]);
-  
+
   // TODO: add ajax-solr ?
   var apps_deps = [
     'elasticjs.service',
@@ -117,6 +117,8 @@ function (angular, $, _, appLevelRequire) {
     'ngRoute',
     'ngSanitize',
     'ngDragDrop',
+    'ngeo',
+    'gettext',
     'pascalprecht.translate',
     'kibana'
   ];
