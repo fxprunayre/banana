@@ -37,202 +37,201 @@ define([
          var module = angular.module('kibana.panels.spatial', ['ngeo']);
          app.useModule(module);
 
-         module.service('heatmapService', function () {
-           this.$get = ['$http', function ($http) {
-             /**
-              * Return Solr query heatmap parameters
-              * based on current map extent and map zoom.
-              *
-              * @param {ol.map} map The OL map
-              * @param {string} name  The heatmap name, default 'geom'
-              * @param {int} gridlevel Force the gridlevel. It not
-              *     defined, compute it based on the map zoom.
-              *
-              * @return {{
-             *  [facet.heatmap]: (*|string),
-             *  [facet.heatmap.geom]: string,
-             *  [facet.heatmap.gridLevel]: (*|string)}}
-              */
-             function getHeatmapParams(map, name, gridlevel) {
-               var extent = map.getView().calculateExtent(
-                 map.getSize()
-               );
-               extent = ol.proj.transformExtent(
-                 extent,
-                 map.getView().getProjection(),
-                 'EPSG:4326');
+         module.service('heatmapService', function ($http) {
+           /**
+            * Return Solr query heatmap parameters
+            * based on current map extent and map zoom.
+            *
+            * @param {ol.map} map The OL map
+            * @param {string} name  The heatmap name, default 'geom'
+            * @param {int} gridlevel Force the gridlevel. It not
+            *     defined, compute it based on the map zoom.
+            *
+            * @return {{
+           *  [facet.heatmap]: (*|string),
+           *  [facet.heatmap.geom]: string,
+           *  [facet.heatmap.gridLevel]: (*|string)}}
+            */
+           function getHeatmapParams(map, name, gridlevel) {
+             var extent = map.getView().calculateExtent(
+               map.getSize()
+             );
+             extent = ol.proj.transformExtent(
+               extent,
+               map.getView().getProjection(),
+               'EPSG:4326');
 
-               var xmin = Math.max(extent[0], -180).toFixed(5),
-                 xmax = Math.min(extent[2], 180).toFixed(5),
-                 ymin = Math.max(extent[1], -90).toFixed(5),
-                 ymax = Math.min(extent[3], 90).toFixed(5);
+             var xmin = Math.max(extent[0], -180).toFixed(5),
+               xmax = Math.min(extent[2], 180).toFixed(5),
+               ymin = Math.max(extent[1], -90).toFixed(5),
+               ymax = Math.min(extent[3], 90).toFixed(5);
 
-               // Compute grid level based on current zoom
-               // Zoom goes from 1 to 28
-               // GridLevel 1 to 11 but Solr may return exception
-               // if too many cells are requested (depends on extent).
-               // Restrict between 3 and 11
-               var gridLevel = function (z) {
-                 if (0 <= z && z <= 2) {
-                   return 2;
-                 }
-                 if (2 < z && z <= 5) {
-                   return 3;
-                 }
-                 if (5 < z && z <= 7) {
-                   return 4;
-                 }
-                 if (7 < z && z <= 10) {
-                   return 5;
-                 }
-                 if (10 < z && z <= 12) {
-                   return 6;
-                 }
-                 if (12 < z && z <= 14) {
-                   return 7;
-                 }
-                 if (14 < z && z <= 18) {
-                   return 8;
-                 }
-                 if (18 < z && z <= 20) {
-                   return 9;
-                 }
-                 if (20 < z && z <= 24) {
-                   return 10;
-                 }
-                 if (24 < z) {
-                   return 11;
-                 }
-                 // Depends on distErrPct in Solr geom field
-                 // configuration TODO: Maybe compute another lower
-                 // grid level when the following exception occur:
-                 // Caused by: java.lang.IllegalArgumentException: Too
-                 // many cells (361 x 434) for level 8 shape
-                 // Rect(minX=3.49852,maxX=3.62211,minY=40.49707,maxY=40.57137)
-               };
-               var computedGridLevel = gridLevel(
-                 map.getView().getZoom());
-               //var computedGridLevel =
-               //  (Math.min(11,
-               //    Math.max(2,
-               //      (map.getView().getZoom() / 2)
-               //      // Better resolution but slow
-               //      //(map.getView().getZoom() / 2) + 1
-               //  ))).toFixed(0);
-               //console.log('Zoom: ' + map.getView().getZoom() +
-               //  ' Grid: ' + computedGridLevel);
-
-               return {
-                 'facet.heatmap': name || 'geom',
-                 'facet.heatmap.geom': '["' +
-                                       xmin + ' ' +
-                                       ymin + '" TO "' +
-                                       xmax + ' ' +
-                                       ymax + '"]',
-                 'facet.heatmap.gridLevel': gridlevel
-                                            || computedGridLevel
-               };
-             };
-             /**
-              * Convert a Solr heatmap in an array of features.
-              *
-              * @param {object} heatmap The heatmap object from the
-              *     Solr response
-              * @param {string} proj  The map projection to create
-              *     feature into.
-              * @param {string} asGrid Use a grid instead of points
-              * in cell center
-              * @return {Array}
-              */
-             function heatmapToFeatures(heatmap, proj, asGrid) {
-               var grid = {}, features = [];
-               for (var i = 0; i < heatmap.length; i++) {
-                 grid[heatmap[i]] = heatmap[i + 1];
-                 i++;
+             // Compute grid level based on current zoom
+             // Zoom goes from 1 to 28
+             // GridLevel 1 to 11 but Solr may return exception
+             // if too many cells are requested (depends on extent).
+             // Restrict between 3 and 11
+             var gridLevel = function (z) {
+               if (0 <= z && z <= 2) {
+                 return 2;
                }
-               if (grid) {
-                 // The initial outer level is in row order
-                 // (top-down),
-                 // then the inner arrays are the columns
-                 // (left-right).
-                 // The entire value is null if there is no matching
-                 // data.
-                 var rows = grid.counts_ints2D,
-                   cellwidth = (grid.maxX - grid.minX) / grid.columns,
-                   cellheight = (grid.maxY - grid.minY) / grid.rows,
-                   max = 0;
-                 //console.log(grid.columns + " x " + grid.rows);
-                 if (rows === null) {
-                   console.warn('Empty heatmap returned.');
-                   return [];
-                 }
+               if (2 < z && z <= 5) {
+                 return 3;
+               }
+               if (5 < z && z <= 7) {
+                 return 4;
+               }
+               if (7 < z && z <= 10) {
+                 return 5;
+               }
+               if (10 < z && z <= 12) {
+                 return 6;
+               }
+               if (12 < z && z <= 14) {
+                 return 7;
+               }
+               if (14 < z && z <= 18) {
+                 return 8;
+               }
+               if (18 < z && z <= 20) {
+                 return 9;
+               }
+               if (20 < z && z <= 24) {
+                 return 10;
+               }
+               if (24 < z) {
+                 return 11;
+               }
+               // Depends on distErrPct in Solr geom field
+               // configuration TODO: Maybe compute another lower
+               // grid level when the following exception occur:
+               // Caused by: java.lang.IllegalArgumentException: Too
+               // many cells (361 x 434) for level 8 shape
+               // Rect(minX=3.49852,maxX=3.62211,minY=40.49707,maxY=40.57137)
+             };
+             var computedGridLevel = gridLevel(
+               map.getView().getZoom());
+             //var computedGridLevel =
+             //  (Math.min(11,
+             //    Math.max(2,
+             //      (map.getView().getZoom() / 2)
+             //      // Better resolution but slow
+             //      //(map.getView().getZoom() / 2) + 1
+             //  ))).toFixed(0);
+             //console.log('Zoom: ' + map.getView().getZoom() +
+             //  ' Grid: ' + computedGridLevel);
 
-                 for (var i = 0; i < rows.length; i++) {
-                   for (var j = 0;
-                        rows[i] != null && j < rows[i].length; j++) {
-                     max = Math.max(max, rows[i][j]);
-                   }
-                 }
+             return {
+               'facet.heatmap': name || 'geom',
+               'facet.heatmap.geom': '["' +
+                                     xmin + ' ' +
+                                     ymin + '" TO "' +
+                                     xmax + ' ' +
+                                     ymax + '"]',
+               'facet.heatmap.gridLevel': gridlevel
+                                          || computedGridLevel
+             };
+           };
+           /**
+            * Convert a Solr heatmap in an array of features.
+            *
+            * @param {object} heatmap The heatmap object from the
+            *     Solr response
+            * @param {string} proj  The map projection to create
+            *     feature into.
+            * @param {string} asGrid Use a grid instead of points
+            * in cell center
+            * @return {Array}
+            */
+           function heatmapToFeatures(heatmap, proj, asGrid) {
+             var grid = {}, features = [];
+             for (var i = 0; i < heatmap.length; i++) {
+               grid[heatmap[i]] = heatmap[i + 1];
+               i++;
+             }
+             if (grid) {
+               // The initial outer level is in row order
+               // (top-down),
+               // then the inner arrays are the columns
+               // (left-right).
+               // The entire value is null if there is no matching
+               // data.
+               var rows = grid.counts_ints2D,
+                 cellwidth = (grid.maxX - grid.minX) / grid.columns,
+                 cellheight = (grid.maxY - grid.minY) / grid.rows,
+                 max = 0;
+               //console.log(grid.columns + " x " + grid.rows);
+               if (rows === null) {
+                 console.warn('Empty heatmap returned.');
+                 return [];
+               }
 
-                 for (var i = 0; i < rows.length; i++) {
-                   // If any array would be all zeros, a null is
-                   // returned instead for efficiency reasons.
-                   if (!angular.isArray(rows[i])) {
+               for (var i = 0; i < rows.length; i++) {
+                 for (var j = 0;
+                      rows[i] != null && j < rows[i].length; j++) {
+                   max = Math.max(max, rows[i][j]);
+                 }
+               }
+
+               for (var i = 0; i < rows.length; i++) {
+                 // If any array would be all zeros, a null is
+                 // returned instead for efficiency reasons.
+                 if (!angular.isArray(rows[i])) {
+                   continue;
+                 }
+                 for (var j = 0; j < rows[i].length; j++) {
+                   if (rows[i][j] == 0) {
                      continue;
                    }
-                   for (var j = 0; j < rows[i].length; j++) {
-                     if (rows[i][j] == 0) {
-                       continue;
-                     }
-                     var geom;
-                     // TODO: Start of experiment to display grid
-                     if (asGrid) {
-                       var pt = new ol.geom.Point([
-                         grid.minX + cellwidth * j,
-                         grid.maxY - cellheight * i]);
-                       var ulc = pt.clone();
-                       var coords = [ulc.getCoordinates()];
-                       pt.translate(0, -cellheight);
-                       coords.push(pt.getCoordinates());
-                       pt.translate(cellwidth, 0);
-                       coords.push(pt.getCoordinates());
-                       pt.translate(0, cellheight);
-                       coords.push(pt.getCoordinates());
-                       coords.push(ulc.getCoordinates());
-                       geom = new ol.geom.Polygon([coords]);
-                     } else {
-                       geom = new ol.geom.Point([
-                         grid.minX + cellwidth * j + cellwidth / 2,
-                         grid.maxY - cellheight * i - cellheight / 2]);
-                     }
-                     var value = rows[i][j];
-                     var weight = (value / max).toFixed(4);
-                     //var weight = 1 - (1 / (1 + value / (1 / max)));
-                     var feature = new ol.Feature({
-                       geometry: geom.transform(
-                         'EPSG:4326',
-                         proj),
-                       count: value,
-                       weight: weight
-                     });
-                     //console.log(value + " = " + weight);
-                     features.push(feature);
+                   var geom;
+                   // TODO: Start of experiment to display grid
+                   if (asGrid) {
+                     var pt = new ol.geom.Point([
+                       grid.minX + cellwidth * j,
+                       grid.maxY - cellheight * i]);
+                     var ulc = pt.clone();
+                     var coords = [ulc.getCoordinates()];
+                     pt.translate(0, -cellheight);
+                     coords.push(pt.getCoordinates());
+                     pt.translate(cellwidth, 0);
+                     coords.push(pt.getCoordinates());
+                     pt.translate(0, cellheight);
+                     coords.push(pt.getCoordinates());
+                     coords.push(ulc.getCoordinates());
+                     geom = new ol.geom.Polygon([coords]);
+                   } else {
+                     geom = new ol.geom.Point([
+                       grid.minX + cellwidth * j + cellwidth / 2,
+                       grid.maxY - cellheight * i - cellheight / 2]);
                    }
+                   var value = rows[i][j];
+                   var weight = (value / max).toFixed(4);
+                   //var weight = 1 - (1 / (1 + value / (1 / max)));
+                   var feature = new ol.Feature({
+                     geometry: geom.transform(
+                       'EPSG:4326',
+                       proj),
+                     count: value,
+                     weight: weight
+                   });
+                   //console.log(value + " = " + weight);
+                   features.push(feature);
                  }
                }
-               return features;
-             };
-             return {
-               getHeatmapParams: getHeatmapParams,
-               heatmapToFeatures: heatmapToFeatures
-             };
-           }];
+             }
+             return features;
+           };
+           return {
+             getHeatmapParams: getHeatmapParams,
+             heatmapToFeatures: heatmapToFeatures
+           };
          });
          module.controller('SpatialCtrl', function ($scope, $timeout,
                                                 ngeoFeatureOverlayMgr,
                                                 ngeoToolActivateMgr,
                                                 ngeoDecorateInteraction,
                                                 ngeoDebounce,
+                                                heatmapService,
                                                 querySrv, dashboard, filterSrv) {
            $scope.panelMeta = {
              modals: [
@@ -363,6 +362,15 @@ define([
              } else {
                map.removeLayer($scope.thematicLayer);
              }
+
+             if ($scope.panel.mapMode === 'heatmap') {
+               // This is a hack, heatmap params needs a completely initialized map size
+               $timeout(function () {
+                 $scope.addHeatmapLayer();
+               }, 400);
+             } else {
+               map.removeLayer($scope.heatmapLayer);
+             }
              // TODO: turn off filter mode
            }
 
@@ -464,6 +472,30 @@ define([
              });
              return $scope.thematicLayerSource;
            };
+           $scope.heatmapParams = {};
+           var defaultHeatmapConfig = {
+             radius: 30,
+             blur: 55,
+             opacity: .7,
+             //gradient: ['#0f0', '#ff0', '#f00', '#fff'],
+             visible: true
+           };
+           $scope.addHeatmapLayer = function () {
+             $scope.heatmapLayer = new ol.layer.Heatmap(
+               angular.extend({
+                                source: new ol.source.Vector(),
+                              },
+                              defaultHeatmapConfig));
+             map.addLayer($scope.heatmapLayer);
+
+             var refreshHeatmap = function () {
+               $scope.heatmapParams = heatmapService.getHeatmapParams(map, "geom");
+               $scope.getData();
+             });
+             // Register heatmap params after zoom end
+             map.on('moveend', refreshHeatmap);
+             // TODO: Refresh heatmap when search change
+           };
 
            $scope.addThematicLayer = function () {
              var url = null;
@@ -562,11 +594,26 @@ define([
                }
              };
              facet += angular.toJson(facetConfig);
+
+             if ($scope.panel.mapMode === 'filter') {
+
+             }
+             if ($scope.panel.mapMode === 'thematic') {
+
+             }
+             var heatmap = '';
+             if ($scope.panel.mapMode === 'heatmap') {
+               heatmap = '&facet=true&'
+                         + '&facet.heatmap=' + $scope.heatmapParams['facet.heatmap']
+                         + '&facet.heatmap.geom=' + $scope.heatmapParams['facet.heatmap.geom']
+                         + '&facet.heatmap.gridLevel=' + $scope.heatmapParams['facet.heatmap.gridLevel'];
+             }
+
              var fq = '';
              if (filterSrv.getSolrFq() && filterSrv.getSolrFq() != '') {
                fq = '&' + filterSrv.getSolrFq();
              }
-             var query = querySrv.getORquery() + wt_json + fq + rows_limit + facet;
+             var query = querySrv.getORquery() + wt_json + fq + rows_limit + facet + heatmap;
              if ($scope.panel.queries.custom != null) {
                query += $scope.panel.queries.custom;
              }
@@ -574,21 +621,35 @@ define([
 
              var results = request.doSearch();
              results.then(function(results) {
-               var data = results.facets.buckets.buckets;
-               if (data) {
-                 var map = {};
-                 for (var i = 0; i < data.length; i ++) {
-                    map[data[i].val] = data[i].count;
-                 }
-                 var features = $scope.thematicLayerSource.getFeatures();
-                 for (var i = 0; i < features.length; i ++) {
-                   var props = features[i].getProperties(),
-                       fKey = props[$scope.panel.thematicLayerField];
-                   if (map[fKey]) {
-                    console.log(features[i].getProperties()['ISO_A2']);
-                    features[i].set('_value_', map[fKey]);
-                    console.log(features[i].getProperties()['_value_']);
+               if ($scope.panel.mapMode === 'thematic') {
+                 var data = results.facets.buckets.buckets;
+                 if (data) {
+                   var valueMap = {};
+                   for (var i = 0; i < data.length; i ++) {
+                     valueMap[data[i].val] = data[i].count;
                    }
+                   var features = $scope.thematicLayerSource.getFeatures();
+                   for (var i = 0; i < features.length; i ++) {
+                     var props = features[i].getProperties(),
+                         fKey = props[$scope.panel.thematicLayerField];
+                     if (valueMap[fKey]) {
+                      console.log(features[i].getProperties()['ISO_A2']);
+                      features[i].set('_value_', valueMap[fKey]);
+                      console.log(features[i].getProperties()['_value_']);
+                     }
+                   }
+                 }
+               }
+               if ($scope.panel.mapMode === 'heatmap') {
+                  var n = results.facet_counts.facet_heatmaps;
+                 if (angular.isArray(n.geom)) {
+                   var source = $scope.heatmapLayer.getSource();
+                   source.clear();
+                   source.addFeatures(
+                     heatmapService.heatmapToFeatures(
+                       n.geom,
+                       map.getView().getProjection())
+                   );
                  }
                }
              });
