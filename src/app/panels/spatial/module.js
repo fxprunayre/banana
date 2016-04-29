@@ -499,15 +499,16 @@ define([
                .range($scope.panel.colors);
              // var quantiles = $scope.scale.quantiles();
 
+             // console.log('[' + $scope.min + ' ' + $scope.max + '] interval: ' + $scope.interval + ' classes: ' + $scope.panel.colors.length);
              $scope.legend = [];
              for (var i = 0; i < $scope.panel.colors.length; i++) {
-               var classeMin = i * $scope.interval,
-                 classeMax = (i + 1) * $scope.interval;
+               var classeMin = i * $scope.interval + $scope.min,
+                 classeMax = classeMin + $scope.interval;
                $scope.legend.push({
                   id: i,
                   color: $scope.scale(classeMin + 1).replace(/"/g, ''),
                                     //$scope.panel.colors[i].replace(/"/g, ''),
-                  label: classeMin + ' - ' + classeMax,
+                  label: classeMin.toFixed(0) + ' - ' + classeMax.toFixed(0),
                   match: []
                 });
              }
@@ -524,7 +525,7 @@ define([
                }
              }
              var thematicMapStyleFn = function (feature, resolution) {
-               var stroke = null;
+               var stroke = null, defaultRenderingStyle;
                if ($scope.panel.strokeColor &&
                    $scope.panel.strokeColor !== '') {
                  var c = ol.color.asArray($scope.panel.strokeColor);
@@ -535,20 +536,22 @@ define([
                      color: c,
                      width: $scope.panel.strokeWidth
                    });
-                 $scope.defaultRenderingStyle = new ol.style.Style({
-                   stroke: stroke
+                 defaultRenderingStyle = new ol.style.Style({
+                   stroke: stroke,
+                   fill: new ol.style.Fill({
+                     color: '#FFF'
+                   })
                  });
                }
 
                var value = feature.getProperties()['_value_'];
                var iso = feature.getProperties()['ISO_A2'];
-               console.log(iso + ':' + value);
                if (value) {
-                 // TODO:
+                 console.log(iso + ':' + value);
                  var color = $scope.scale(value);
-                 console.log($scope.min + ' < \t\t' + value +
-                             ' \t\t < ' + $scope.max +
-                             ' \t\t color: ' + color);
+                 // console.log($scope.min + ' < \t\t' + value +
+                 //             ' \t\t < ' + $scope.max +
+                 //             ' \t\t color: ' + color);
                  if (color) {
                    color = color.replace(/"/g, '');
                  } else {
@@ -557,12 +560,12 @@ define([
                  return new ol.style.Style({
                    stroke: stroke,
                    fill: new ol.style.Fill({
-                     color: color // TODO: check if enough colors
+                     color: color
                    })
                  });
                } else {
                  // Default rendering style configured or null if none.
-                 return $scope.defaultRenderingStyle || null;
+                 return defaultRenderingStyle || null;
                }
              };
              if (url != null) {
