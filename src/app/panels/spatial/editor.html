@@ -140,4 +140,39 @@
               ng-model="panel.thematicLayerField"/>
     </div>
   </div>
+  <div class="row"
+       ng-show="panel.mapMode === 'thematic'">
+    <div class="col-sm-12 col-md-12">
+      <h6>Thematic layer colors</h6>
+      <div data-color-picker="panel.colors"
+           palette="panel.colorPalette"
+           defaultColors="defaultColors"
+           mode="panel.colorMode"/>
+    </div>
+    <div class="col-sm-12 col-md-12">
+      <h6>Thematic layer stroke color
+        <tip>
+          If null, feature not matching any values are not displayed
+        </tip>
+      </h6>
+      <div class="input-group">
+        <input type="text"
+               class="form-control"
+               data-ng-model="panel.strokeColor"
+               placeholder="Color value"/>
+        <span class="input-group-addon">
+          <input type="color"
+                 data-ng-model="panel.strokeColor"/>
+        </span>
+      </div>
+      <h6>Thematic layer stroke width</h6>
+      <input type="number"
+             class="form-control"
+             ng-model="panel.strokeWidth"/>
+      <h6>Thematic layer stroke opacity</h6>
+      <input type="number"
+             class="form-control"
+             ng-model="panel.strokeOpacity"/>
+    </div>
+  </div>
 </form>

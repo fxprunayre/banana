@@ -12,7 +12,8 @@
       The chart series will get a color from these color values.</tip>
   </label>
   &nbsp;
-  <label class="small">
+  <label class="small"
+         data-ng-show="$scope.data">
     <input type="radio"
            name="colorMode"
            data-ng-model="mode"
@@ -28,9 +29,9 @@
         <textarea class="form-control"
                   style="width: 100%"
               type="text"
-              data-ng-model="colors"></textarea>
+              data-ng-model="colorsAsText"></textarea>
         <table style="width: 100%"><tr>
-          <td data-ng-repeat="c in colors"
+          <td data-ng-repeat="c in colors track by $index"
               style="background-color: {{c.substring(1, 8)}}">&nbsp;</td>
         </tr></table>
       </div>

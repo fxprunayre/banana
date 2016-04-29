@@ -31,7 +31,7 @@ define([
               $scope.paletteValueFoundInData = true;
               $scope.mode = $scope.mode || 'list';
               $scope.brewer = chroma.brewer;
-              $scope.nbOfClasses = $scope.data.length || 6;
+              $scope.nbOfClasses = ($scope.data && $scope.data.length) || 6;
             }
 
 
@@ -78,20 +78,23 @@ define([
             // Add or delete color property to data items
             // based on the palette.
             $scope.updateDataColors = function () {
-              var paletteValueFoundInData = false, i, item, color;
-              for (i = 0; i < $scope.data.length; i ++) {
-                item = $scope.data[i];
-                color = getColor(item.label);
-                if (color === null) {
-                  delete item.color;
-                } else {
-                  item.color = color;
-                  paletteValueFoundInData = true;
+              $scope.colorsAsText = $scope.colors.join(',');
+              if ($scope.data) {
+                var paletteValueFoundInData = false, i, item, color;
+                for (i = 0; i < $scope.data.length; i ++) {
+                  item = $scope.data[i];
+                  color = getColor(item.label);
+                  if (color === null) {
+                    delete item.color;
+                  } else {
+                    item.color = color;
+                    paletteValueFoundInData = true;
+                  }
                 }
+                // Display a warning if the palette describes
+                // values not in current dataset
+                $scope.paletteValueFoundInData = paletteValueFoundInData;
               }
-              // Display a warning if the palette describes
-              // values not in current dataset
-              $scope.paletteValueFoundInData = paletteValueFoundInData;
             };
 
             // Create a map of label and colors based on
@@ -120,6 +123,19 @@ define([
             };
 
 
+            $scope.parseColors = function () {
+              if ($scope.colorsAsText) {
+                var list = $scope.colorsAsText.split(','), colors = [];
+                for (var i = 0; i < list.length; i ++) {
+                  // TODO: Check valid color
+                  colors.push(list[i]);
+                }
+                $scope.colors = colors;
+                $scope.nbOfClasses = colors.length;
+              }
+            };
+
+            $scope.$watchCollection('colorsAsText', $scope.parseColors);
             $scope.$watchCollection('palette', $scope.updateDataColors);
             $scope.$watch('palette.color', $scope.updateDataColors);
 

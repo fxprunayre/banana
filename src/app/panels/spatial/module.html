@@ -4,20 +4,31 @@
     <div spatial="ctrl.map"
          style="height:100%">
       <div data-ng-show="loading"><img src="img/load_big.gif"></div>
-      <div style="height: 100%;width: 100%;">
-      <!--<div style="height: 100%;width: 100%;">-->
-        <div style="height: 80%;width: 100%;"
+      <div style="height: 95%; width: 100%;">
+        <div style="height: 100%; width: 100%;"
              ngeo-map="ctrl.map">
         </div>
-        <div ngeo-btn-group>
-          <button ngeo-btn
-                  data-ng-show="panel.mapMode === 'filter'"
-                  class="btn btn-primary"
-                  ng-model="filterInteraction.active">
-            Draw filter
-          </button>
-        </div>
       </div>
+    </div>
+    <div style="position: relative; float: right; z-index: 1000"
+         data-ng-show="panel.mapMode === 'filter'"
+         ngeo-btn-group>
+      <button ngeo-btn
+              class="btn btn-primary"
+              ng-model="filterInteraction.active">
+        Draw filter
+      </button>
+    </div>
+    <div class="legend"
+         style="position: absolute; right: 0px; z-index: 1000; bottom: 0px;"
+         ng-show="panel.mapMode === 'thematic'">
+      <ul style="list-style: none;">
+        <li ng-repeat="l in legend">
+          <i class="fa fa-square"
+             style="color: {{l.color}}"></i>
+          {{l.label}}
+        </li>
+      </ul>
     </div>
   </div>
 </div>
