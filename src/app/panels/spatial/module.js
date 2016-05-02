@@ -229,7 +229,7 @@ define([
              };
            }];
          });
-         module.controller('SpatialCtrl', function ($scope, $timeout,
+         module.controller('spatial', function ($scope, $timeout,
                                                 ngeoFeatureOverlayMgr,
                                                 ngeoToolActivateMgr,
                                                 ngeoDecorateInteraction,
@@ -273,27 +273,28 @@ define([
 
            // Classification layers
            $scope.thematicLayers = [{
-             key: 'World',
+             key: 'World - Countries',
              type: 'GEOJSON',
              url: 'app/panels/spatial/data/world.json'
            }, {
-             key: 'Europe',
+             key: 'Europe - Countries',
              type: 'GEOJSON',
              url: 'app/panels/spatial/data/europe.json'
            }, {
-             key: 'France - Département (simplifié)',
+             key: 'France - Départements (simplifiés)',
              type: 'GEOJSON',
              url: 'app/panels/spatial/data/frdep1000.json'
            }, {
-             key: 'France - Département',
+             key: 'France - Départements',
              type: 'GEOJSON',
              url: 'app/panels/spatial/data/frdep.json'
-           // TODO: }, {
-           //   key: 'France - Régions',
-           //   type: 'GEOJSON',
-           //   url: ''
+           }, {
+               key: 'France - Régions',
+               type: 'GEOJSON',
+               url: 'app/panels/spatial/data/frreg2015.json'
            }];
 
+           $scope.facetSorts = ['count desc', 'count asc', 'index desc', 'index asc'];
            $scope.filterModes = ['intersect'];
            $scope.thematicRenderTypes = ['equalInterval'];
            // TODO: $scope.thematicRenderTypes = ['equalInterval', 'quantile',
@@ -315,10 +316,16 @@ define([
              mapMode: 'filter',
              filterField: null,
              filterMode: $scope.filterModes[0],
+             facetLimit: 300,
+             facetMinCount: 1,
+             facetSort: $scope.facetSorts[0],
+             facetMissing: false,
+             facetPrefix: '',
              heatmapField: null,
              thematicField: null,
              thematicLayer: $scope.thematicLayers[0].key,
              thematicLayerField: null,
+             thematicLayerFieldExpression: null,
              thematicRenderType: $scope.thematicRenderTypes[0],
              // TODO: Legend format %1 - %2 ?
              show_queries: true,
@@ -343,6 +350,12 @@ define([
            });
            map = this.map;
 
+           $scope.setLocationFromCurrentView = function() {
+             $scope.panel.centerLon = map.getView().getCenter()[0];
+             $scope.panel.centerLat = map.getView().getCenter()[1];
+             $scope.panel.zoom = map.getView().getZoom();
+           };
+
            $scope.setBackgroundLayer = function () {
              var bgLayer = null;
              map.getLayers().forEach(function (l) {
@@ -360,18 +373,7 @@ define([
              }
            }
 
-           // $scope.init = function () {
-           //   $scope.$on('refresh', function () {
-           //     $scope.get_data();
-           //   });
-           //   $scope.$emit('render');
-           //   $scope.get_data();
-           // };
-           //
-           // $scope.set_refresh = function (state) {
-           //   $scope.refresh = state;
-           // };
-           //
+
            function updateMap () {
              $scope.setBackgroundLayer();
              if ($scope.panel.mapMode === 'filter') {
@@ -460,7 +462,12 @@ define([
              });
            }
 
+
+           // Load JSON layer
+           var listenerKey;
            $scope.loadThematicLayerSource = function (url) {
+             ol.Observable.unByKey(listenerKey);
+
              $scope.thematicLayerSource = new ol.source.Vector({
                projection : 'EPSG:4326',
                url: url,
@@ -468,10 +475,12 @@ define([
              });
              $scope.thematicLayerFields = [];
 
-             var listenerKey = $scope.thematicLayerSource.on('change', function(e) {
+             listenerKey = $scope.thematicLayerSource.on('change', function(e) {
                if ($scope.thematicLayerSource.getState() == 'ready') {
+                 console.log($scope.thematicLayerSource.getFeatures().length);
                  var feature = $scope.thematicLayerSource.getFeatures()[0];
                  if (feature) {
+                   $scope.thematicLayerFields.push('');
                    angular.forEach(feature.getProperties(), function (v, k) {
                      $scope.thematicLayerFields.push(k);
                    });
@@ -481,12 +490,14 @@ define([
                  } else {
                    console.warn('Feature does not have any attributes');
                  }
-                 // ol.Observable.unByKey(listenerKey);
+                 ol.Observable.unByKey(listenerKey);
                }
              });
              return $scope.thematicLayerSource;
            };
 
+
+           // Compute legend based on datasets
            function computeLegend() {
              $scope.min = d3.min($scope.domain);
              $scope.max = d3.max($scope.domain);
@@ -504,15 +515,20 @@ define([
              for (var i = 0; i < $scope.panel.colors.length; i++) {
                var classeMin = i * $scope.interval + $scope.min,
                  classeMax = classeMin + $scope.interval;
-               $scope.legend.push({
-                  id: i,
-                  color: $scope.scale(classeMin + 1).replace(/"/g, ''),
-                                    //$scope.panel.colors[i].replace(/"/g, ''),
-                  label: classeMin.toFixed(0) + ' - ' + classeMax.toFixed(0),
-                  match: []
-                });
+               // If facet return no data, no style.
+               if ($scope.domain.length > 0) {
+                 $scope.legend.push({
+                    id: i,
+                    color: $scope.scale(classeMin + 1).replace(/"/g, ''),
+                    label: classeMin.toFixed(0) + ' - ' + classeMax.toFixed(0),
+                    match: []
+                  });
+               }
              }
            };
+
+
+
 
            $scope.addThematicLayer = function () {
              var url = null;
@@ -571,7 +587,6 @@ define([
              if (url != null) {
                // TODO: A proxy may be required
                $scope.thematicLayer = new ol.layer.Vector({
-                 // source: vectorSource
                  source: $scope.loadThematicLayerSource(url),
                  style: thematicMapStyleFn
                });
@@ -602,7 +617,7 @@ define([
                               top: (pixel[1] + mapPos.top) + 'px'
                             });
 
-                   console.log(feature.getProperties()['ISO_A2'])
+                   console.log(feature.getProperties()[$scope.panel.thematicLayerField])
                    info.attr('data-original-title', value)
                        .popover('show');
                  } else {
@@ -620,10 +635,31 @@ define([
                  return;
                }
                displayFeatureInfo(map.getEventPixel(evt.originalEvent));
-             }), 300);
+             }), 500);
 
            }
 
+
+
+           // Return the facet key, optionnally applying
+           // the key expression defined in order to transform
+           // the facet value to a something else.
+           // eg. if facet key is 'dpt43' and key expression
+           // is dpt(.*), 43 is returned.
+           // If no match return the value.
+           var getFacetKey = function (val) {
+             if ($scope.panel.thematicLayerFieldExpression) {
+                var tokens = val.match(
+                  new RegExp($scope.panel.thematicLayerFieldExpression));
+               if (tokens.length > 0) {
+                 return tokens[1];
+               }
+             }
+             return val;
+           };
+
+
+           // Use facet API to retrieve statistics
            $scope.getData = function () {
              var request = $scope.sjs.Request().indices(dashboard.indices);
              var wt_json = '&wt=json';
@@ -632,10 +668,12 @@ define([
              var facetConfig = {
                buckets: {
                  type: 'terms',
-                 field: $scope.panel.thematicField
-                 // limit: 300, // TODO: Configuration
-                 // sort: 'count', // TODO: Applies to legend
-                 // missing: true
+                 field: $scope.panel.thematicField,
+                 limit: $scope.panel.facetLimit,
+                 mincount: $scope.panel.facetMinCount,
+                 prefix: $scope.panel.facetPrefix,
+                 sort: $scope.panel.facetSort, // TODO: Applies to legend
+                 missing: $scope.panel.missing
                }
              };
              facet += angular.toJson(facetConfig);
@@ -650,15 +688,18 @@ define([
              request = request.setQuery(query);
 
              var results = request.doSearch();
+             var that = map;
              results.then(function(results) {
                var data = results.facets.buckets.buckets;
                if (data) {
                  // From facets, create a map of key value
-                 var map = {};
+                 var valueMap = {};
                  $scope.domain = [];
                  for (var i = 0; i < data.length; i ++) {
                    var value = data[i].count;
-                   map[data[i].val] = value;
+                   var key = getFacetKey(data[i].val);
+                   //thematicLayerFieldExpression
+                   valueMap[key] = value;
                    $scope.domain.push(value);
                  }
 
@@ -669,51 +710,33 @@ define([
                  for (var i = 0; i < features.length; i ++) {
                    var props = features[i].getProperties(),
                        fKey = props[$scope.panel.thematicLayerField];
-                   if (map[fKey]) {
-                    features[i].set('_value_', map[fKey]);
+                   if (valueMap[fKey]) {
+                    features[i].set('_value_', valueMap[fKey]);
+                   } else {
+                     features[i].set('_value_', null);
                    }
                  }
                }
+               that.render();
+               // $scope.thematicLayer.redraw();
              });
            }
 
            updateMap();
-           // TODO: Save map lat/lon/zoom
 
            $scope.$emit('render');
+
+           $scope.$on('refresh', function() {
+             $scope.getData();
+           });
          });
 
          module.directive('spatial', function ($timeout) {
            return {
              restrict: 'A',
-             // controllerAs: 'ctrl',
-             // controller: 'SpatialCtrl',
              link: function (scope, elem, attrs) {
                scope.loading = true;
                scope.map = scope.$eval(attrs['spatial']);
-
-               // // Receive render events
-               // scope.$on('draw', function () {
-               //   if (_.isUndefined(ctrl.map)) {
-               //     scope.initMap(mapElem);
-               //   }
-               // });
-               //
-               // scope.$on('render', function () {
-               //   if (_.isUndefined(ctrl.map)) {
-               //     scope.initMap(mapElem);
-               //   }
-               //   ctrl.map.updateSize();
-               //   if (scope.panel.mapMode === 'heatmap') {
-               //     if (angular.isDefined(scope.panel.heatmapField)) {
-               //       var hmParams = heatmapService.getHeatmapParams(ctrl.map, scope.panel.heatmapField);
-               //     } else {
-               //       console.warning('In heatmap mode a geom field MUST be selected');
-               //     }
-               //   } else if (scope.panel.mapMode === 'thematic') {
-               //
-               //   }
-               // });
 
                // This is a hack to wait Angular to render element.
                $timeout(function () {

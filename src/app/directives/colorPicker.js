@@ -78,7 +78,7 @@ define([
             // Add or delete color property to data items
             // based on the palette.
             $scope.updateDataColors = function () {
-              $scope.colorsAsText = $scope.colors.join(',');
+              $scope.colorsAsText = $scope.colors ? $scope.colors.join(',') : '';
               if ($scope.data) {
                 var paletteValueFoundInData = false, i, item, color;
                 for (i = 0; i < $scope.data.length; i ++) {

@@ -21,6 +21,9 @@
       <input type="number"
              class="form-control"
              ng-model="panel.zoom"/>
+      <button ng-click="setLocationFromCurrentView()">
+        Set location from current view
+      </button>
     </div>
   </div>
 
@@ -106,6 +109,10 @@
              class="form-control"
              ng-model="panel.thematicField"
              ng-change="set_refresh(true)">
+      <h6>(optional) key field expression</h6>
+      <input type="text"
+             class="form-control"
+             ng-model="panel.thematicLayerFieldExpression"/>
     </div>
     <div class="col-sm-4 col-md-4">
       <h6>Thematic layer</h6>
@@ -121,6 +128,29 @@
   </div>
   <div class="row"
        ng-show="panel.mapMode === 'thematic'">
+    <div class="col-sm-12 col-md-12">
+      <h6>Facet sort</h6>
+      <select class="form-control"
+              ng-options="opt for opt in facetSorts"
+              ng-model="panel.facetSort"/>
+      <label>
+        <input type="checkbox"
+               ng-model="panel.facetMissing"/>
+        Facet missing
+      </label>
+      <h6>Facet min count</h6>
+      <input type="number"
+             class="form-control"
+             ng-model="panel.facetMinCount"/>
+      <h6>Facet limit</h6>
+      <input type="number"
+             class="form-control"
+             ng-model="panel.facetLimit"/>
+      <h6>Facet prefix</h6>
+      <input type="text"
+             class="form-control"
+             ng-model="panel.facetPrefix"/>
+    </div>
     <div class="col-sm-12 col-md-12">
       <h6>Thematic layer classification</h6>
       <div data-color-picker="panel.colors"
