@@ -1,0 +1,23 @@
+.spatial-legend {
+  position: absolute;
+  z-index: 0;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(159, 159, 159, .7);
+  border-radius: 3px;
+  padding: 3px;
+}
+.spatial-filter-btn {
+  z-index: 1;
+  right: 2em;
+  top: 2.7em;
+  height: 1.375em;
+  width: 1.375em;
+}
+.spatial-filter-btn button {
+  height: auto;
+  width: auto;
+}
+.spatial-legend ul {
+  padding-left: 2px;
+}

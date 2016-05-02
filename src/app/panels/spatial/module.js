@@ -34,7 +34,7 @@ define([
        function (angular, app, _, d3, localRequire) {
          'use strict';
          var DEBUG = false;
-
+         var FEATURE_COLUMN_VALUE = '_value_';
          var module = angular.module('kibana.panels.spatial', ['ngeo']);
          app.useModule(module);
 
@@ -244,10 +244,9 @@ define([
                  show: $scope.panel.spyable
                }
              ],
-             editorTabs: [
-               {
-                 title: 'Queries',
-                 src: 'app/partials/querySelect.html'
+             editorTabs: [{
+                 title: 'Configuration',
+                 src: 'app/panels/spatial/configuration.html'
                }
              ],
              status: "Experimental",
@@ -295,7 +294,7 @@ define([
            }];
 
            $scope.facetSorts = ['count desc', 'count asc', 'index desc', 'index asc'];
-           $scope.filterModes = ['intersect'];
+           $scope.filterModes = ['Intersects', 'Contains', 'IsWithin'];
            $scope.thematicRenderTypes = ['equalInterval'];
            // TODO: $scope.thematicRenderTypes = ['equalInterval', 'quantile',
            // 'naturalBreaks', 'standardDeviation', 'prettyBreaks'];
@@ -313,8 +312,11 @@ define([
              centerLat: 0,
              centerLon: 0,
              zoom: 2,
+             mapMouseWheelZoom: true,
+             mapZoom: true,
              mapMode: 'filter',
              filterField: null,
+             filterActive: false,
              filterMode: $scope.filterModes[0],
              facetLimit: 300,
              facetMinCount: 1,
@@ -375,6 +377,25 @@ define([
 
 
            function updateMap () {
+             var that = map;
+             // Enable or disable mouse wheel zoom
+             map.getInteractions().forEach(function (i) {
+               if (i instanceof ol.interaction.MouseWheelZoom) {
+                 i.setActive($scope.panel.mapMouseWheelZoom);
+               }
+             });
+
+             // Enable or disable zoom control
+             if ($scope.panel.mapZoom === false) {
+               map.getControls().forEach(function (i) {
+                 if (i instanceof ol.control.Zoom) {
+                   map.removeControl(i);
+                 }
+               });
+             } else {
+               map.addControl(new ol.control.Zoom());
+             }
+
              $scope.setBackgroundLayer();
              if ($scope.panel.mapMode === 'filter') {
                $scope.initFilterMode();
@@ -399,20 +420,20 @@ define([
              $scope.refresh = false;
            };
 
-           // $scope.get_data = function (segment, query_id) {
-           // };
+
+           // Draw a rectangle on the map and enable a spatial
+           // filter on dashboard results.
+           var filterId = undefined;
+           var feature = new ol.Feature();
+           var featureOverlay = new ol.layer.Vector({
+             source: new ol.source.Vector(),
+             map: map
+           });
+           featureOverlay.getSource().addFeature(feature);
 
            $scope.initFilterMode = function () {
              // initialize the feature overlay manager with the map
              ngeoFeatureOverlayMgr.init(map);
-
-             var feature = new ol.Feature();
-             var filterId = undefined;
-             var featureOverlay = new ol.layer.Vector({
-               source: new ol.source.Vector(),
-               map: map
-             });
-             featureOverlay.getSource().addFeature(feature);
 
              function setFilter(geom) {
                if (angular.isDefined(geom)) {
@@ -427,9 +448,9 @@ define([
 
                  filterId = filterSrv.set({
                    type: 'querystring',
-                   query: '{!field f=' +
-                          $scope.panel.filterField
-                          + '}Intersects(' + wkt + ')'
+                   query: $scope.panel.filterField +
+                          ':"' + $scope.panel.filterMode +
+                          '(' + wkt + ')"'
                  }, filterId);
                } else {
                   feature.setGeometry(null);
@@ -440,7 +461,7 @@ define([
              }
 
              $scope.filterInteraction = new ol.interaction.DragBox();
-             $scope.filterInteraction.setActive(true);
+             $scope.filterInteraction.setActive($scope.panel.filterActive);
              ngeoDecorateInteraction($scope.filterInteraction);
              map.addInteraction($scope.filterInteraction);
 
@@ -560,14 +581,9 @@ define([
                  });
                }
 
-               var value = feature.getProperties()['_value_'];
-               var iso = feature.getProperties()['ISO_A2'];
+               var value = feature.getProperties()[FEATURE_COLUMN_VALUE];
                if (value) {
-                 console.log(iso + ':' + value);
                  var color = $scope.scale(value);
-                 // console.log($scope.min + ' < \t\t' + value +
-                 //             ' \t\t < ' + $scope.max +
-                 //             ' \t\t color: ' + color);
                  if (color) {
                    color = color.replace(/"/g, '');
                  } else {
@@ -609,7 +625,7 @@ define([
                  return feature;
                });
                if (feature) {
-                 var value = feature.getProperties()['_value_'];
+                 var value = feature.getProperties()[FEATURE_COLUMN_VALUE];
                  if (value) {
                    var mapPos = map.getTarget().getBoundingClientRect();
                    info.css({
@@ -690,7 +706,7 @@ define([
              var results = request.doSearch();
              var that = map;
              results.then(function(results) {
-               var data = results.facets.buckets.buckets;
+               var data = results.facets && results.facets.buckets.buckets;
                if (data) {
                  // From facets, create a map of key value
                  var valueMap = {};
@@ -711,9 +727,9 @@ define([
                    var props = features[i].getProperties(),
                        fKey = props[$scope.panel.thematicLayerField];
                    if (valueMap[fKey]) {
-                    features[i].set('_value_', valueMap[fKey]);
+                    features[i].set(FEATURE_COLUMN_VALUE, valueMap[fKey]);
                    } else {
-                     features[i].set('_value_', null);
+                     features[i].set(FEATURE_COLUMN_VALUE, null);
                    }
                  }
                }

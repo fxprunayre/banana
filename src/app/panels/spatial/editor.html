@@ -1,187 +1,61 @@
-<form>
-  <!-- main Map settings -->
-  <div class="row">
-    <div class="col-sm-4 col-md-4">
-      <h6>Background layer</h6>
-      <select class="form-control"
-              ng-options="layer.key as layer.key for layer in backgroundLayers"
-              ng-model="panel.backgroundLayer"/>
-    </div>
-    <!-- Zoom, legend ...-->
-    <div class="col-sm-4 col-md-4">
-      <h6>Center longitude</h6>
-      <input type="number"
-             class="form-control"
-             ng-model="panel.centerLon"/>
-      <h6>latitude</h6>
-      <input type="number"
-             class="form-control"
-             ng-model="panel.centerLat"/>
-      <h6>Zoom</h6>
-      <input type="number"
-             class="form-control"
-             ng-model="panel.zoom"/>
-      <button ng-click="setLocationFromCurrentView()">
-        Set location from current view
-      </button>
-    </div>
-  </div>
+<!-- main Map settings -->
+<div class="row">
+  <div class="col-sm-4 col-md-4">
+    <h6>Background layer</h6>
+    <select class="form-control"
+            ng-options="layer.key as layer.key for layer in backgroundLayers"
+            ng-model="panel.backgroundLayer"/>
 
-  <!-- Spatial options -->
-  <div class="row">
-    <div class="col-sm-4 col-md-4">
-      <h6>Map mode
-        <tip>
-          Filter provided the capability to apply spatial filter to the query.
-          Heatmap is based on a geometry field and provide an overview of where are
-          document located.
-          Thematic map is based on an attribute and allows classification.
-          Map is displaying geometry objects from results.
-        </tip>
-      </h6>
-      <select class="form-control"
-              ng-options="opt for opt in mapModes"
-              ng-model="panel.mapMode"/>
-    </div>
-  </div>
-
-
-  <div class="row"
-       ng-show="panel.mapMode === 'filter'">
-    <div class="col-sm-4 col-md-4">
-      <h6>Geometry field</h6>
-      <!-- TODO: Would be good to filter on geom columns -->
-      <input bs-typeahead
-             ng-options="field for field in fields.list"
-             type="text"
-             class="form-control"
-             ng-model="panel.filterField"
-             ng-change="set_refresh(true)">
-    </div>
-    <div class="col-sm-4 col-md-4">
-      <h6>Filter mode</h6>
-      <select class="form-control"
-              ng-options="f as f for f in filterModes"
-              ng-model="panel.filterMode"/>
-    </div>
-  </div>
-
-  <div class="row"
-       ng-show="panel.mapMode === 'map'">
-    <div class="col-sm-4 col-md-4">
-      <h6>Unsupported</h6>
-      <!--<h6>Geometry field</h6>
-      <input bs-typeahead
-             ng-options="field for field in fields.list"
-             type="text"
-             class="form-control"
-             ng-model="panel.filterField"
-             ng-change="set_refresh(true)">-->
-    </div>
-  </div>
-
-  <div class="row"
-       ng-show="panel.mapMode === 'heatmap'">
-    <div class="col-sm-4 col-md-4">
-      <h6>Geometry field</h6>
-      <!-- TODO: Would be good to filter on geom columns -->
-      <input bs-typeahead
-             ng-options="field for field in fields.list"
-             type="text"
-             class="form-control"
-             ng-model="panel.heatmapField"
-             ng-change="set_refresh(true)">
-    </div>
-    <div class="col-sm-4 col-md-4">
-
-    </div>
-  </div>
-
-
-  <div class="row"
-       ng-show="panel.mapMode === 'thematic'">
-    <div class="col-sm-4 col-md-4">
-      <h6>Clasification field</h6>
-      <!-- TODO: Would be good to filter on not geom columns -->
-      <input bs-typeahead
-             ng-options="field for field in fields.list"
-             type="text"
-             class="form-control"
-             ng-model="panel.thematicField"
-             ng-change="set_refresh(true)">
-      <h6>(optional) key field expression</h6>
+    <h6>Background color
+      <tip>
+        If no background layer, use a custom color for background.
+      </tip>
+    </h6>
+    <div class="input-group">
       <input type="text"
              class="form-control"
-             ng-model="panel.thematicLayerFieldExpression"/>
-    </div>
-    <div class="col-sm-4 col-md-4">
-      <h6>Thematic layer</h6>
-      <select class="form-control"
-              ng-options="layer.key as layer.key for layer in thematicLayers"
-              ng-model="panel.thematicLayer"
-              ng-change="addThematicLayer()"/>
-      <h6>Thematic key field</h6>
-      <select class="form-control"
-              ng-options="field for field in thematicLayerFields"
-              ng-model="panel.thematicLayerField"/>
-    </div>
-  </div>
-  <div class="row"
-       ng-show="panel.mapMode === 'thematic'">
-    <div class="col-sm-12 col-md-12">
-      <h6>Facet sort</h6>
-      <select class="form-control"
-              ng-options="opt for opt in facetSorts"
-              ng-model="panel.facetSort"/>
-      <label>
-        <input type="checkbox"
-               ng-model="panel.facetMissing"/>
-        Facet missing
-      </label>
-      <h6>Facet min count</h6>
-      <input type="number"
-             class="form-control"
-             ng-model="panel.facetMinCount"/>
-      <h6>Facet limit</h6>
-      <input type="number"
-             class="form-control"
-             ng-model="panel.facetLimit"/>
-      <h6>Facet prefix</h6>
-      <input type="text"
-             class="form-control"
-             ng-model="panel.facetPrefix"/>
-    </div>
-    <div class="col-sm-12 col-md-12">
-      <h6>Thematic layer classification</h6>
-      <div data-color-picker="panel.colors"
-           palette="panel.colorPalette"
-           defaultColors="defaultColors"
-           mode="panel.colorMode"/>
-    </div>
-    <div class="col-sm-12 col-md-12">
-      <h6>Thematic layer stroke color
-        <tip>
-          If null, feature not matching any values are not displayed
-        </tip>
-      </h6>
-      <div class="input-group">
-        <input type="text"
-               class="form-control"
-               data-ng-model="panel.strokeColor"
-               placeholder="Color value"/>
+             data-ng-model="panel.backgroundColor"
+             placeholder="Color value"/>
         <span class="input-group-addon">
           <input type="color"
-                 data-ng-model="panel.strokeColor"/>
+                 data-ng-model="panel.backgroundColor"/>
         </span>
-      </div>
-      <h6>Thematic layer stroke width</h6>
-      <input type="number"
-             class="form-control"
-             ng-model="panel.strokeWidth"/>
-      <h6>Thematic layer stroke opacity</h6>
-      <input type="number"
-             class="form-control"
-             ng-model="panel.strokeOpacity"/>
     </div>
   </div>
-</form>
+  <!-- Zoom, legend ...-->
+  <div class="col-sm-4 col-md-4">
+    <h6>Center longitude</h6>
+    <input type="number"
+           class="form-control"
+           ng-model="panel.centerLon"/>
+    <h6>latitude</h6>
+    <input type="number"
+           class="form-control"
+           ng-model="panel.centerLat"/>
+    <h6>Zoom</h6>
+    <input type="number"
+           class="form-control"
+           ng-model="panel.zoom"/>
+    <br/>
+    <button ng-click="setLocationFromCurrentView()"
+            class="btn btn-default">
+      Set location from current view
+      <tip>
+        From current map view, set zoom and center location.
+      </tip>
+    </button>
+  </div>
+  <div class="col-sm-4 col-md-4">
+    <label>
+      <input type="checkbox"
+             ng-model="panel.mapZoom"/>
+      Zoom active
+    </label>
+    <br/>
+    <label>
+      <input type="checkbox"
+             ng-model="panel.mapMouseWheelZoom"/>
+      Mouse wheel zoom active
+    </label>
+  </div>
+</div>
