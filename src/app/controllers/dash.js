@@ -10,33 +10,50 @@ function (angular, config, _) {
   var module = angular.module('kibana.controllers');
 
   module.controller('DashCtrl', function(
-    $scope, $route, ejsResource, sjsResource, fields, dashboard, alertSrv, panelMove) {
+    $scope, $route, ejsResource, sjsResource, fields, dashboard, alertSrv, panelMove, userService, $filter) {
     $scope.editor = {
       index: 0
+    };
+    userService.getCurrentUserInfo();
+    $scope.getUser = function() {
+      return userService.getUser();
     };
 
     // FIXME : this is duplicated from app.module.js
     $scope.navLinks = [{
       id: 'home',
       icon: 'glyphicon-home',
-      url: '../#/'
+      url: '../#/',
+      needsLogin: false
     }, {
       id: 'dashboard',
       icon: 'glyphicon-stats',
-      url: 'dashboard2/#/dashboard/solr/INSPIRE%20Indicator%20trends'
+      url: '#/dashboard/solr/INSPIRE%20Indicator%20trends',
+      needsLogin: false
     }, {
       id: 'monitoring',
       icon: 'glyphicon-list-alt',
-      url: '../#/monitoring/manage'
+      url: '../#/monitoring/manage',
+      needsLogin: false
     }, {
       id: 'harvesting',
       icon: 'glyphicon-download-alt',
-      url: '../#/harvesting/manage'
+      url: '../#/harvesting/manage',
+      needsLogin: false
     }, {
       id: 'admin',
       icon: 'glyphicon-cog',
-      url: '/solr/' // TODO: it may be a different URL
+      url: '/solr/', // TODO: it may be a different URL
+      needsLogin: true
     }];
+
+    $scope.getNavLinks = function() {
+      if (!userService.getUser() || !userService.getUser().authenticated) {
+        return $filter('filter')($scope.navLinks, {needsLogin: false});
+      } else {
+        return $scope.navLinks;
+      }
+    };
 
     // For moving stuff around the dashboard. Needs better names
     $scope.panelMove = panelMove;

@@ -67,13 +67,19 @@ function (angular, $, _, appLevelRequire) {
   app.config(function ($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider) {
     $routeProvider
       .when('/dashboard', {
-        templateUrl: 'app/partials/dashboard.html',
+        templateUrl: 'app/partials/dashboard.html'
       })
       .when('/dashboard/:kbnType/:kbnId', {
-        templateUrl: 'app/partials/dashboard.html',
+        templateUrl: 'app/partials/dashboard.html'
       })
       .when('/dashboard/:kbnType/:kbnId/:params', {
         templateUrl: 'app/partials/dashboard.html'
+      })
+      .when('/logout', {
+        controller: 'LogoutCtrl'
+      })
+      .when('/login', {
+
       })
       .otherwise({
         redirectTo: 'dashboard'
@@ -105,7 +111,18 @@ function (angular, $, _, appLevelRequire) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
   }]);
-  
+
+  app.run(function($rootScope, $location, $timeout) {
+    $rootScope.$on('$routeChangeStart', function(event, current, previous) {
+      if ($location.path() === '/login') {
+        $timeout(function (){
+          window.location = '../daobs/loginForm';
+        });
+      }
+
+    });
+  });
+
   // TODO: add ajax-solr ?
   var apps_deps = [
     'elasticjs.service',
