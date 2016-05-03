@@ -97,6 +97,10 @@ define([
               }
             };
 
+            $scope.revert = function () {
+              $scope.colors = $scope.colors.reverse();
+            };
+
             // Create a map of label and colors based on
             // the selected palette.
             $scope.createPalette = function (b) {

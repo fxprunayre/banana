@@ -34,6 +34,13 @@
           <td data-ng-repeat="c in colors track by $index"
               style="background-color: {{c.substring(1, 8)}}">&nbsp;</td>
         </tr></table>
+        <br/>
+        <button type="button"
+                class="btn btn-default"
+                ng-click="revert()">
+          <i class="fa fa-retweet"/>
+          Revert
+        </button>
       </div>
       <div class="col-md-4">
         <span>Create a palette</span><br/>
@@ -44,8 +51,9 @@
                  data-ng-model="nbOfClasses"/>
           <div class="input-group-btn">
             <button type="button" class="btn btn-default dropdown-toggle"
-                    data-toggle="dropdown" aria-expanded="false">
-              <span>Choose a palette</span>
+                    data-toggle="dropdown" aria-expanded="false"
+                    alt="Choose a palette">
+              <i class="fa fa-paint-brush"/>&nbsp;
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
