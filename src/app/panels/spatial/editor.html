@@ -1,0 +1,61 @@
+<!-- main Map settings -->
+<div class="row">
+  <div class="col-sm-4 col-md-4">
+    <h6>Background layer</h6>
+    <select class="form-control"
+            ng-options="layer.key as layer.key for layer in backgroundLayers"
+            ng-model="panel.backgroundLayer"/>
+
+    <h6>Background color
+      <tip>
+        If no background layer, use a custom color for background.
+      </tip>
+    </h6>
+    <div class="input-group">
+      <input type="text"
+             class="form-control"
+             data-ng-model="panel.backgroundColor"
+             placeholder="Color value"/>
+        <span class="input-group-addon">
+          <input type="color"
+                 data-ng-model="panel.backgroundColor"/>
+        </span>
+    </div>
+  </div>
+  <!-- Zoom, legend ...-->
+  <div class="col-sm-4 col-md-4">
+    <h6>Center longitude</h6>
+    <input type="number"
+           class="form-control"
+           ng-model="panel.centerLon"/>
+    <h6>latitude</h6>
+    <input type="number"
+           class="form-control"
+           ng-model="panel.centerLat"/>
+    <h6>Zoom</h6>
+    <input type="number"
+           class="form-control"
+           ng-model="panel.zoom"/>
+    <br/>
+    <button ng-click="setLocationFromCurrentView()"
+            class="btn btn-default">
+      Set location from current view
+      <tip>
+        From current map view, set zoom and center location.
+      </tip>
+    </button>
+  </div>
+  <div class="col-sm-4 col-md-4">
+    <label>
+      <input type="checkbox"
+             ng-model="panel.mapZoom"/>
+      Zoom active
+    </label>
+    <br/>
+    <label>
+      <input type="checkbox"
+             ng-model="panel.mapMouseWheelZoom"/>
+      Mouse wheel zoom active
+    </label>
+  </div>
+</div>

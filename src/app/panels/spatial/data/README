@@ -1,0 +1,5 @@
+Data generated from:
+* Natural earth dataset http://www.naturalearthdata.com/
+* GeoFla IGN for France départements and régions http://professionnels.ign.fr/geofla
+
+For country, ISO_A2 attribute updated for some missing values (FR, NO, UK/GB, CY, XK).

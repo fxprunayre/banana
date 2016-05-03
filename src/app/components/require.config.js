@@ -20,6 +20,7 @@ require.config({
     angular:                  '../bower_components/angular/angular',
     'angular-route':          '../bower_components/angular-route/angular-route',
     'angular-dragdrop':       '../bower_components/angular-dragdrop/src/angular-dragdrop',
+    'angular-gettext':        '../bower_components/angular-gettext/dist/angular-gettext',
     'angular-translate':      '../bower_components/angular-translate/angular-translate',
     'angular-translate-loader-static-files':      '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files',
     'angular-strap':          '../bower_components/angular-strap/dist/angular-strap',
@@ -29,6 +30,7 @@ require.config({
     timepicker:               '../bower_components/bootstrap-timepicker/js/bootstrap-timepicker',
     datepicker:               '../bower_components/bootstrap-datepicker/js/bootstrap-datepicker',
 
+    ngeo:                     'panels/spatial/ngeo/ngeo-debug',
     underscore:               'components/underscore.extended',
     'underscore-src':         '../bower_components/underscore/underscore',
     bootstrap:                '../bower_components/bootstrap/dist/js/bootstrap',
@@ -93,6 +95,8 @@ require.config({
     'angular-resource':     ['angular'],
     'angular-route':        ['angular'],
     'angular-touch':        ['angular'],
+    'ngeo':                 ['angular'],
+    'angular-gettext':      ['ngeo'],
     'angular-translate':    ['angular'],
     'angular-translate-loader-static-files':    ['angular-translate'],
 
