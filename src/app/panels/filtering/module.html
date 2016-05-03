@@ -41,6 +41,10 @@
       float:right;
       margin-bottom: 5px;
     }
+    .filter-ellipsis {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   </style>
 
   <div class="filtering-container">
@@ -61,12 +65,12 @@
       </div>
 
       <div ng-hide="filterSrv.list[id].editing &amp;&amp; isEditable(filterSrv.list[id])">
-        <ul class="list-unstyled">
+        <ul class="list-unstyled filter-ellipsis">
           <li ng-repeat="(key,value) in filterSrv.list[id]" ng-show="show_key(key)"><strong>{{key}}</strong> : {{value}}</li>
         </ul>
       </div>
       <div ng-show="filterSrv.list[id].editing &amp;&amp; isEditable(filterSrv.list[id])">
-        <ul class="list-unstyled">
+        <ul class="list-unstyled filter-ellipsis">
           <li ng-repeat="key in _.keys(filterSrv.list[id])" ng-show="show_key(key)"><strong>{{key}}</strong> : <input type="text" ng-model="filterSrv.list[id][key]" class="form-control"></li>
         </ul>
       </div>

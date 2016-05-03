@@ -6,7 +6,6 @@ define([
   'jquery',
   'underscore',
   'require',
-
   'elasticjs',
   'solrjs',
   'bootstrap',
@@ -18,6 +17,7 @@ define([
   'angular-dragdrop',
   'angular-translate',
   'angular-translate-loader-static-files',
+  'angular-gettext',
   'extend-jquery'
 ],
 function (angular, $, _, appLevelRequire) {
@@ -134,6 +134,8 @@ function (angular, $, _, appLevelRequire) {
     'ngRoute',
     'ngSanitize',
     'ngDragDrop',
+    'ngeo',
+    'gettext',
     'pascalprecht.translate',
     'kibana'
   ];

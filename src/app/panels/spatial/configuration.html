@@ -1,0 +1,290 @@
+<form>
+  <!-- Spatial options -->
+  <div class="row">
+    <div class="col-sm-6 col-md-6">
+      <h2>Map type
+        <select class="form-control"
+                ng-options="opt for opt in mapModes"
+                ng-model="panel.mapMode"/>
+      </h2>
+    </div>
+    <div class="col-sm-6 col-md-6">
+      <p class="help-block">
+        <ul>
+          <li>Filter provide the capability to apply a spatial filter to the dashboard query.</li>
+          <li>Map mode display geometry objects from results (unsupported).</li>
+          <li>Heatmap show an overview of where documents are located.</li>
+          <li>Thematic map is based on an attribute and allows classification.</li>
+        </ul>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="row"
+       ng-show="panel.mapMode === 'filter'">
+    <div class="col-sm-4 col-md-4">
+      <h6>Geometry field</h6>
+      <!-- TODO: Would be good to filter on geom columns -->
+      <input bs-typeahead
+             ng-options="field for field in fields.list"
+             type="text"
+             class="form-control"
+             ng-model="panel.filterField"
+             ng-change="set_refresh(true)">
+    </div>
+    <div class="col-sm-4 col-md-4">
+      <h6>Filter mode</h6>
+      <select class="form-control"
+              ng-options="f as f for f in filterModes"
+              ng-model="panel.filterMode"/>
+      <label>
+        <input type="checkbox"
+               ng-model="panel.filterActive"/>
+        Active by default
+      </label>
+      <!-- TODO: Add drawing feature style -->
+    </div>
+  </div>
+
+  <div class="row"
+       ng-show="panel.mapMode === 'map'">
+    <div class="col-sm-4 col-md-4">
+      <div class="alert alert-info">Unsupported</div>
+      <!--<h6>Geometry field</h6>
+      <input bs-typeahead
+             ng-options="field for field in fields.list"
+             type="text"
+             class="form-control"
+             ng-model="panel.filterField"
+             ng-change="set_refresh(true)">-->
+    </div>
+  </div>
+
+  <div class="row"
+       ng-show="panel.mapMode === 'heatmap'">
+    <div class="col-sm-4 col-md-4">
+      <div class="alert alert-warning">This mode is experimental</div>
+      <h6>Geometry field</h6>
+      <!-- TODO: Would be good to filter on geom columns -->
+      <input bs-typeahead
+             ng-options="field for field in fields.list"
+             type="text"
+             class="form-control"
+             ng-model="panel.heatmapField"
+             ng-change="set_refresh(true)">
+    </div>
+    <div class="col-sm-4 col-md-4">
+
+    </div>
+  </div>
+
+
+  <div class="row"
+       ng-show="panel.mapMode === 'thematic'">
+    <div class="col-sm-4 col-md-4">
+      <h6>
+        Thematic layer
+        <tip>
+          The base vector layer to render the indicator value.
+        </tip>
+      </h6>
+      <select class="form-control"
+              ng-options="layer.key as layer.key for layer in thematicLayers"
+              ng-model="panel.thematicLayer"
+              ng-change="addThematicLayer()"/>
+      <br/>
+      <div ng-show="panel.thematicLayer === 'URL'">
+        or URL
+        <tip>
+          URL pointing to a GeoJSON file.
+        </tip>
+        <input type="text"
+               class="form-control"
+               ng-model="panel.thematicLayerUrl"/>
+      </div>
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <h6>
+        Thematic key field
+        <tip>
+          The key column to match to the document field.
+        </tip>
+      </h6>
+      <select class="form-control"
+              ng-options="field for field in thematicLayerFields"
+              ng-model="panel.thematicLayerField"/>
+    </div>
+    <div class="col-sm-1 col-md-1">
+      <h2>=</h2>
+    </div>
+    <div class="col-sm-4 col-md-4">
+      <h6>
+        Classification field
+        <tip>
+          Choose the field in the document to match
+          to the thematic layer key column.
+        </tip>
+      </h6>
+      <!-- TODO: Would be good to filter on not geom columns -->
+      <input bs-typeahead
+             ng-options="field for field in fields.list"
+             type="text"
+             class="form-control"
+             ng-model="panel.thematicField"
+             ng-change="set_refresh(true)">
+      <h6>
+        (optional) key field expression
+        <tip>
+          Use a regular expression to extract
+          a substring of the classification field.
+          This is useful when the facet value
+          is not exactly the same as the thematic layer key.
+          eg. dpt(.*) will extract 43 if facet value is dpt43.
+          In that case, the key column in the thematic layer
+          MUST contains 43.
+        </tip>
+      </h6>
+      <input type="text"
+             class="form-control"
+             ng-model="panel.thematicLayerFieldExpression"/>
+    </div>
+  </div>
+  <div class="row"
+       ng-show="panel.mapMode === 'thematic'">
+    <div class="col-sm-4 col-md-4">
+      <h6>
+        Indicator type
+        <tip>
+          Count number of documents for each values or choose value field.
+        </tip>
+      </h6>
+      <select class="form-control"
+              ng-options="opt for opt in facetTypes"
+              ng-model="panel.facetType"/>
+      <h6 ng-show="panel.facetType !== 'count'">Stats field
+        <tip>Field that contains numerical values</tip>
+      </h6>
+      <input ng-show="panel.facetType !== 'count'"
+             bs-typeahead
+             ng-options="field for field in fields.list"
+             type="text"
+             class="form-control"
+             ng-model="panel.facetField"
+             ng-change="set_refresh(true)">
+      <h6 ng-show="panel.facetType !== 'count'">Indicator precision</h6>
+      <select ng-show="panel.facetType !== 'count'"
+              class="form-control"
+              ng-options="opt for opt in [0, 1, 2, 3, 4, 5]"
+              ng-model="panel.facetPrecision"/>
+
+      <h6>Min value</h6>
+      <input type="number"
+             class="form-control"
+             ng-model="panel.minValue"/>
+      <h6>Max value</h6>
+      <input type="number"
+             class="form-control"
+             ng-model="panel.maxValue"/>
+      <h6>Indicator sort</h6>
+      <select class="form-control"
+              ng-options="opt for opt in facetSorts"
+              ng-model="panel.facetSort"/>
+    </div>
+    <div class="col-sm-4 col-md-4">
+      <label>
+        <input type="checkbox"
+               ng-model="panel.facetMissing"/>
+        Facet missing
+        <tip>
+          Return count of missing (will not be displayed anyway).
+        </tip>
+      </label>
+      <h6>
+        Facet min count
+        <tip>
+          Define if facet should be returned only if greater than
+          this value.
+        </tip>
+      </h6>
+      <input type="number"
+             class="form-control"
+             ng-model="panel.facetMinCount"/>
+      <h6>
+        Facet limit
+        <tip>
+          Number of facets to return. Choose a value higher
+          than the number of possible matches.
+        </tip>
+      </h6>
+      <input type="number"
+             class="form-control"
+             ng-model="panel.facetLimit"/>
+      <h6>
+        Facet prefix
+        <tip>
+          Select facet starting with a particular value.
+        </tip>
+      </h6>
+      <input type="text"
+             class="form-control"
+             ng-model="panel.facetPrefix"/>
+    </div>
+  </div>
+  <div class="row"
+       ng-show="panel.mapMode === 'thematic'">
+    <div class="col-sm-8 col-md-8">
+      <tip>
+        The number of colors in the palette defines the number of classes.
+      </tip>
+      <div data-color-picker="panel.colors"
+           palette="panel.colorPalette"
+           defaultColors="defaultColors"
+           mode="panel.colorMode"/>
+    </div>
+    <div class="col-sm-4 col-md-4">
+      <h6>Thematic layer fill color
+        <tip>
+          If null, feature not matching any values are not filled
+        </tip>
+      </h6>
+      <div class="input-group">
+        <input type="text"
+               class="form-control"
+               data-ng-model="panel.fillColor"
+               placeholder="Color value"/>
+        <span class="input-group-addon">
+          <input type="color"
+                 data-ng-model="panel.fillColor"/>
+        </span>
+      </div>
+      <h6>Fill opacity</h6>
+      <input type="range"
+             min="0"
+             max="1"
+             step=".1"
+             ng-model="panel.fillOpacity"/>
+      <h6>Thematic layer stroke color</h6>
+      <div class="input-group">
+        <input type="text"
+               class="form-control"
+               data-ng-model="panel.strokeColor"
+               placeholder="Color value"/>
+        <span class="input-group-addon">
+          <input type="color"
+                 data-ng-model="panel.strokeColor"/>
+        </span>
+      </div>
+      <h6>Stroke width</h6>
+      <input type="number"
+             class="form-control"
+             ng-model="panel.strokeWidth"/>
+      <h6>Stroke opacity</h6>
+      <input type="range"
+             min="0"
+             max="1"
+             step=".1"
+             ng-model="panel.strokeOpacity"/>
+    </div>
+  </div>
+</form>

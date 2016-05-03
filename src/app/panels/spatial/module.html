@@ -1,0 +1,35 @@
+<div ng-init="init()">
+  <div style="height:{{panel.height|| row.height}}"
+       ng-controller="spatial as ctrl">
+    <div spatial="ctrl.map"
+         style="height:100%">
+      <div data-ng-show="loading"><img src="img/load_big.gif"></div>
+      <div style="height: 95%; width: 100%;">
+        <div style="height: 100%; width: 100%; background-color: {{panel.backgroundColor}}"
+             ngeo-map="ctrl.map">
+          <div class="spatial-filter-btn ol-control"
+               data-ng-show="panel.mapMode === 'filter'"
+               ngeo-btn-group>
+            <button ngeo-btn
+                    type="button"
+                    ng-model="filterInteraction.active"
+                    alt="Enable to draw filter">
+              <i class="fa"
+                 ng-class="filterInteraction.active ? 'fa-eraser' : 'fa-pencil-square-o'"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="spatial-legend"
+         ng-show="panel.mapMode === 'thematic'">
+      <ul style="list-style: none;">
+        <li ng-repeat="l in legend">
+          <i class="fa fa-square"
+             style="color: {{l.color}}"></i>
+          {{l.label}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
