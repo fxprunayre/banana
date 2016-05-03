@@ -21,3 +21,6 @@
 .spatial-legend ul {
   padding-left: 2px;
 }
+.spatial-popover .popover-content {
+  display: none;
+}
