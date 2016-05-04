@@ -55,7 +55,13 @@
         {{series.info.alias}} ({{dashboard.numberWithCommas(series.hits)}})
       </span>
     </span>
-    <span ng-show="panel.legend" class="small"><span ng-show="panel.value_field &amp;&amp; panel.mode != 'count'">{{panel.value_field}}</span> {{panel.mode}} per <strong>{{panel.interval}}</strong> | (<strong>{{dashboard.numberWithCommas(hits)}}</strong> hits) | Time correction : {{panel.timezone}}</span>
+    <span ng-show="panel.legend" class="small">
+      <span ng-show="panel.value_field &amp;&amp; panel.mode != 'count'">
+        {{panel.value_field | translate}}
+      </span>
+      {{panel.mode | translate}} per
+      <strong>{{panel.interval}}</strong>
+      | (<strong>{{dashboard.numberWithCommas(hits)}}</strong> hits) | Time correction : {{panel.timezone}}</span>
   </div>
   <form class="form-inline bordered histogram-options" ng-show="options">
     <span class="checkbox">

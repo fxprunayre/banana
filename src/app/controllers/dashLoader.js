@@ -1,6 +1,6 @@
 define([
   'angular',
-  'underscore'
+  'underscore',
 ],
 function (angular, _) {
   'use strict';
@@ -9,7 +9,7 @@ function (angular, _) {
 
   module.controller('dashLoader', function($scope, $http, timer, dashboard, alertSrv) {
     $scope.loader = dashboard.current.loader;
-    
+
     $scope.dashboardEditorModal = { };
     $scope.dashboardEditorTooltip = { title: 'Configure dashboard' };
     $scope.solrSettingsModal = {};
@@ -19,6 +19,7 @@ function (angular, _) {
       $scope.gist = $scope.gist || {};
       $scope.elasticsearch = $scope.elasticsearch || {};
       $scope.resetNewDefaults();
+      $scope.load_translations();
       // $scope.elasticsearch is used throught out this file, dashLoader.html and others.
       // So we'll keep using it for now before refactoring it to $scope.solr.
       // $scope.solr = $scope.solr || {};
@@ -38,7 +39,7 @@ function (angular, _) {
         time_field: 'event_timestamp'
       };
     };
-    
+
     $scope.showDropdown = function(type) {
       // var _l = $scope.loader;
       var _l = dashboard.current.loader || $scope.loader;
@@ -57,7 +58,7 @@ function (angular, _) {
       }
       return false;
     };
-    
+
     $scope.create_new = function(type) {
       $http.get('app/dashboards/' + type + '.json?' + new Date().getTime()).
         success(function(data) {
@@ -81,7 +82,7 @@ function (angular, _) {
           }
 
           dashboard.dash_load(data);
-          
+
           // Reset new dashboard defaults
           $scope.resetNewDefaults();
         }).
@@ -181,6 +182,77 @@ function (angular, _) {
       });
     };
 
+
+    // Dashboard translations
+    var NULL_TRANSLATION = '- none -';
+
+    $scope.setTranslation = function () {
+      if (dashboard.current.translation === NULL_TRANSLATION) {
+        $scope.translation = null;
+      } else {
+        for (var i = 0; i < $scope.translationFiles.length; i ++) {
+          if ($scope.translationFiles[i].id === dashboard.current.translation) {
+            $scope.translation = $scope.translationFiles[i];
+            break;
+          }
+        }
+      }
+    };
+    $scope.load_translations = function() {
+      dashboard.load_translations().then(function (r) {
+        $scope.translationFiles = [{
+          id: NULL_TRANSLATION
+        }]
+        $scope.translationFiles = $scope.translationFiles.concat(r.data);
+      });
+    };
+    $scope.createTranslation = function() {
+      $scope.translation = {
+        id: 'i18n_default',
+        languages: ['en'],
+        lang_en: {}
+      }
+    };
+    $scope.saveTranslation = function () {
+      dashboard.save_translations($scope.translation).then(function () {
+        $scope.load_translations();
+      });
+    };
+    $scope.removeTranslation = function () {
+      dashboard.remove_translations($scope.translation.id).then(function () {
+        $scope.load_translations();
+      });
+    };
+    $scope.addLanguage = function(languageToAdd) {
+      $scope.translation.languages.push(languageToAdd);
+      $scope.translation['lang_' + languageToAdd] = {};
+
+      // Create default terms from first language
+      var l = $scope.translation.languages[0];
+      angular.forEach($scope.translation[l], function (value, key) {
+        $scope.translation['lang_' + languageToAdd][key] = value;
+      });
+    };
+    $scope.removeLanguage = function(lang) {
+      for (var i = 0; i < $scope.translation.languages.length; i ++) {
+        if ($scope.translation.languages[i] == lang) {
+          $scope.translation.languages.splice(i, 1);
+          delete $scope.translation['lang_' + lang];
+        }
+      }
+    };
+    $scope.addTerm = function (termToAdd) {
+      for (var i = 0; i < $scope.translation.languages.length; i ++) {
+        var l = $scope.translation.languages[i];
+        $scope.translation['lang_' + l][termToAdd] = termToAdd;
+      }
+    };
+    $scope.removeTerm = function (term) {
+      for (var i = 0; i < $scope.translation.languages.length; i ++) {
+        var l = $scope.translation.languages[i];
+        delete $scope.translation['lang_' + l][term];
+      }
+    };
   });
 
 });

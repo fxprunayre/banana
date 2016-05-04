@@ -48,39 +48,39 @@
   </style>
 
   <div class="filtering-container">
-    <span ng-show="filterSrv.ids.length == 0"><h5>No filters available</h5></span>
+    <span ng-show="filterSrv.ids.length == 0"><h5>{{'noFilterAvailable' | translate}}</h5></span>
     <div ng-repeat="id in filterSrv.ids" class="small filter-panel-filter" ng-class="{'filter-deselected': !filterSrv.list[id].active}">
       <div class="filter-{{filterSrv.list[id].mandate}}">
-        <strong>{{filterSrv.list[id].type}}</strong>
-        <span ng-show="!filterSrv.list[id].editing" class="filter-mandate" ng-click="filterSrv.list[id].editing = true">{{filterSrv.list[id].mandate}}</span>
+        <strong>{{filterSrv.list[id].type | translate}}</strong>
+        <span ng-show="!filterSrv.list[id].editing" class="filter-mandate" ng-click="filterSrv.list[id].editing = true">{{filterSrv.list[id].mandate | translate}}</span>
 
         <span ng-show="filterSrv.list[id].editing">
-          <select class="form-control" ng-model="filterSrv.list[id].mandate" ng-options="f for f in ['must','mustNot','either']"></select>
+          <select class="form-control" ng-model="filterSrv.list[id].mandate" ng-options="(f | translate) for f in ['must','mustNot','either']"></select>
         </span>
 
-        <i class="filter-action pointer fa fa-times" bs-tooltip="'Remove'" ng-click="remove(id)"></i>
-        <i class="filter-action pointer" ng-class="{'fa fa-check-square-o': filterSrv.list[id].active,'fa fa-square-o': !filterSrv.list[id].active}" bs-tooltip="'Toggle'" ng-click="toggle(id)"></i>
-        <i class="filter-action pointer fa fa-edit" ng-hide="filterSrv.list[id].editing" bs-tooltip="'Edit'" ng-click="filterSrv.list[id].editing = true"></i>
+        <i class="filter-action pointer fa fa-times" bs-tooltip="'{{'Remove' | translate}}'" ng-click="remove(id)"></i>
+        <i class="filter-action pointer" ng-class="{'fa fa-check-square-o': filterSrv.list[id].active,'fa fa-square-o': !filterSrv.list[id].active}" bs-tooltip="'{{'toggle' | translate}}'" ng-click="toggle(id)"></i>
+        <i class="filter-action pointer fa fa-edit" ng-hide="filterSrv.list[id].editing" bs-tooltip="'{{'edit' | translate}}'" ng-click="filterSrv.list[id].editing = true"></i>
 
       </div>
 
       <div ng-hide="filterSrv.list[id].editing &amp;&amp; isEditable(filterSrv.list[id])">
         <ul class="list-unstyled filter-ellipsis">
-          <li ng-repeat="(key,value) in filterSrv.list[id]" ng-show="show_key(key)"><strong>{{key}}</strong> : {{value}}</li>
+          <li ng-repeat="(key,value) in filterSrv.list[id]" ng-show="show_key(key)"><strong>{{key | translate}}</strong> : {{value}}</li>
         </ul>
       </div>
       <div ng-show="filterSrv.list[id].editing &amp;&amp; isEditable(filterSrv.list[id])">
         <ul class="list-unstyled filter-ellipsis">
-          <li ng-repeat="key in _.keys(filterSrv.list[id])" ng-show="show_key(key)"><strong>{{key}}</strong> : <input type="text" ng-model="filterSrv.list[id][key]" class="form-control"></li>
+          <li ng-repeat="key in _.keys(filterSrv.list[id])" ng-show="show_key(key)"><strong>{{key | translate}}</strong> : <input type="text" ng-model="filterSrv.list[id][key]" class="form-control"></li>
         </ul>
       </div>
       <div class="filter-apply" ng-show="filterSrv.list[id].editing">
-        <button ng-click="filterSrv.list[id].editing=undefined" class="btn btn-default btn-xs" bs-tooltip="'Save without refresh'">Save</button>
-        <button ng-click="filterSrv.list[id].editing=undefined;refresh()" class="btn btn-success btn-xs" bs-tooltip="'Save and refresh'">Apply</button>
+        <button ng-click="filterSrv.list[id].editing=undefined" class="btn btn-default btn-xs" bs-tooltip="'{{'saveWithoutRefresh' | translate}}'">{{'save' | translate}}</button>
+        <button ng-click="filterSrv.list[id].editing=undefined;refresh()" class="btn btn-success btn-xs" bs-tooltip="'{{'saveAndRefresh' | translate}}'">{{'apply' | translate}}</button>
       </div>
     </div>
     <!-- <span bs-modal="'app/partials/paneleditor.html'" data-toggle="modal"> -->
-    <i class="pointer fa fa-plus-circle" ng-click="add()" bs-tooltip="'Add a query filter'" data-placement="right"></i>
+    <i class="pointer fa fa-plus-circle" ng-click="add()" bs-tooltip="'{{'addQuery' | translate}}'" data-placement="right"></i>
     <!-- </span> -->
   </div>
 </div>
