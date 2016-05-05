@@ -7,9 +7,9 @@ function (angular, _) {
 
   var module = angular.module('kibana.controllers');
 
-  module.controller('dashLoader', function($scope, $http, timer, dashboard, alertSrv) {
+  module.controller('dashLoader', function($scope, $http, fields, timer, dashboard, alertSrv) {
     $scope.loader = dashboard.current.loader;
-
+    $scope.fields = fields;
     $scope.dashboardEditorModal = { };
     $scope.dashboardEditorTooltip = { title: 'Configure dashboard' };
     $scope.solrSettingsModal = {};
@@ -185,7 +185,7 @@ function (angular, _) {
 
     // Dashboard translations
     var NULL_TRANSLATION = '- none -';
-
+    $scope.searchTerm = '';
     $scope.setTranslation = function () {
       if (dashboard.current.translation === NULL_TRANSLATION) {
         $scope.translation = null;
@@ -202,10 +202,15 @@ function (angular, _) {
       dashboard.load_translations().then(function (r) {
         $scope.translationFiles = [{
           id: NULL_TRANSLATION
-        }]
+        }];
         $scope.translationFiles = $scope.translationFiles.concat(r.data);
       });
     };
+    $scope.$watch('dashboard.current.translation', function (n, o) {
+      if (n && n !==o) {
+        $scope.setTranslation();
+      }
+    });
     $scope.createTranslation = function() {
       $scope.translation = {
         id: 'i18n_default',
@@ -221,6 +226,7 @@ function (angular, _) {
     $scope.removeTranslation = function () {
       dashboard.remove_translations($scope.translation.id).then(function () {
         $scope.load_translations();
+        $scope.translation = null;
       });
     };
     $scope.addLanguage = function(languageToAdd) {
@@ -251,6 +257,11 @@ function (angular, _) {
       for (var i = 0; i < $scope.translation.languages.length; i ++) {
         var l = $scope.translation.languages[i];
         delete $scope.translation['lang_' + l][term];
+      }
+    };
+    $scope.addIndexFields = function () {
+      for (var i = 0; i < $scope.fields.list.length; i ++) {
+        $scope.addTerm($scope.fields.list[i]);
       }
     };
   });

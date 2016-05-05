@@ -266,49 +266,66 @@
             <label for="title"
                    translate="">terms</label>
             <table class="table table-striped">
-              <tr>
-                <td></td>
-                <td ng-repeat="l in translation.languages">
-                  {{l}}
-                  <button class="btn btn-link"
-                          title="{{'removeLanguage' | translate}}"
-                          ng-click="removeLanguage(l)">
-                    <i class="fa fa-times text-danger"/>
-                </button>
-                </td>
-              </tr>
-              <tr ng-repeat="(key, value) in translation['lang_' + translation.languages[0]]">
-                <td>{{key}}</td>
-                <td ng-repeat="l in translation.languages">
-                  <input type="text"
-                         class="form-control"
-                         ng-model="translation['lang_' + l][key]">
-                </td>
-                <td>
-                  <button class="btn btn-link"
-                          title="{{'removeTerm' | translate}}"
-                          ng-click="removeTerm(key)">
-                    <i class="fa fa-times text-danger"/>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="{{translation.languages.length + 1}}">
-                  <span translate="">addTerm</span>
-                  <div class="input-group">
+              <thead>
+                <tr>
+                  <th>
                     <input type="text"
                            class="form-control"
-                           ng-model="termToAdd">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default"
-                            ng-click="addTerm(termToAdd); termToAdd = ''">
-                        <i class="fa fa-plus"/>
-                      </button>
-                    </span>
-                  </div>
-                </td>
-                <td></td>
-              </tr>
+                           placeholder="{{'filter' | translate}}"
+                           ng-model="searchTerm"/>
+                  </th>
+                  <th ng-repeat="l in translation.languages">
+                    {{l}}
+                    <button class="btn btn-link"
+                            title="{{'removeLanguage' | translate}}"
+                            ng-click="removeLanguage(l)">
+                      <i class="fa fa-times text-danger"/>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="(key, value) in translation['lang_' + translation.languages[0]]"
+                    ng-show="searchTerm == '' || key.indexOf(searchTerm) !== -1">
+                  <td style="max-width: 180px;">{{key}}</td>
+                  <td ng-repeat="l in translation.languages">
+                    <input type="text"
+                           class="form-control"
+                           ng-model="translation['lang_' + l][key]">
+                  </td>
+                  <td>
+                    <button class="btn btn-link"
+                            title="{{'removeTerm' | translate}}"
+                            ng-click="removeTerm(key)">
+                      <i class="fa fa-times text-danger"/>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="{{translation.languages.length + 1}}">
+                    <span translate="">addTerm</span>
+                    <div class="input-group">
+                      <input type="text"
+                             class="form-control"
+                             ng-model="termToAdd">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default"
+                                  ng-click="addTerm(termToAdd); termToAdd = ''">
+                            <i class="fa fa-plus"/>
+                          </button>
+                          <button class="btn btn-default"
+                                  ng-click="addIndexFields()">
+                            <i class="fa fa-cog"/>
+                            <span translate="">addFieldsToTermList</span>
+                          </button>
+                        </span>
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+              </tfoot>
             </table>
           </div>
 
@@ -318,8 +335,6 @@
             <span translate="">save</span>
           </button>
         </form>
-        {{dashboard.current.translation}}==
-        {{translation}}
       </div>
     </div>
   </div>
