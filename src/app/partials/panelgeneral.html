@@ -1,24 +1,27 @@
 <div class="row">
     <div class="col-sm-12 col-md-12 mar-top-10">
-      <strong>{{panelMeta.status}}</strong> // <span ng-bind-html="panelMeta.description"></span>
+      <strong>{{panelMeta.status | translate}}</strong> // <span ng-bind-html="panelMeta.description"></span>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-4 col-md-4">
-      <label class="small">Title</label><input type="text" class="form-control" ng-model="panel.title">
+      <label class="small" translate="">title</label>
+      <input type="text" class="form-control" ng-model="panel.title">
     </div>
     <div class="col-sm-2 col-md-2" ng-hide="panel.sizeable == false">
-      <label class="small">Span</label> <select class="form-control" ng-model="panel.span" ng-options="f for f in [0,1,2,3,4,5,6,7,8,9,10,11,12]"></select>
+      <label class="small" translate="">span</label>
+      <select class="form-control" ng-model="panel.span" ng-options="f for f in [0,1,2,3,4,5,6,7,8,9,10,11,12]"></select>
     </div>
     <div class="col-sm-2 col-md-2">
-        <label class="small">Editable
+      <label class="small"><span translate="">Editable</span>
         <input type="checkbox" ng-model="panel.editable" ng-checked="panel.editable">
       </label>
-      
+
     </div>
     <div class="col-sm-2 col-md-2" ng-show="!_.isUndefined(panel.spyable)">
       <label class="small">
-        Inspect <i class="fa fa-question-circle" bs-tooltip="'Allow query reveal via <i class=fa fa-eye-open></i>'"></i>
+        <span translate="">inspect</span>
+        <i class="fa fa-question-circle" bs-tooltip="{{inspectHelp}}"></i>
         <input type="checkbox" ng-model="panel.spyable" ng-checked="panel.spyable">
       </label>
     </div>
