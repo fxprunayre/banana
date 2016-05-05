@@ -250,7 +250,10 @@ function (angular, _) {
     $scope.addTerm = function (termToAdd) {
       for (var i = 0; i < $scope.translation.languages.length; i ++) {
         var l = $scope.translation.languages[i];
-        $scope.translation['lang_' + l][termToAdd] = termToAdd;
+        // Only add the term if not available.
+        if (angular.isUndefined($scope.translation['lang_' + l][termToAdd])) {
+          $scope.translation['lang_' + l][termToAdd] = termToAdd;
+        }
       }
     };
     $scope.removeTerm = function (term) {

@@ -63,9 +63,14 @@ function (angular, $, _, appLevelRequire) {
       break;
     }
   };
+
+  /**
+   * Translation loader which first loads static files
+   * for translating the application and then (optionnaly)
+   * load the current dashboard translation file.
+   */
   app.factory('bananaTranslationLoader', function ($http, $q) {
     return function (options) {
-      console.log(options);
 
       if (!options || (!angular.isArray(options.files) && (!angular.isString(options.prefix) || !angular.isString(options.suffix)))) {
         throw new Error('Couldn\'t load static files, no files and prefix or suffix specified!');
