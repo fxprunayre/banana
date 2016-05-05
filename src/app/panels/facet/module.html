@@ -43,15 +43,15 @@
         <div class="panel-group facet_accordion" id="facet_accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default" ng-repeat="field in panel.fields">
                 <div class="panel-heading" role="tab" id="heading_{{field}}">
-                    <a href="#facet_collapse_{{field}}" data-parent="#facet_accordion" data-toggle="collapse" aria-expanded="true" aria-controls="collapse_{{field}}">
-                            {{field}} <i class="fa fa-chevron-down" style="float:right;"></i>
+                    <a href="#facet_collapse_{{field}}" data-parent="#facet_accordion" data-toggle="collapse" aria-expanded="true" aria-controls="collapse_{{field}}" title="{{field}}">
+                            {{field | translate}} <i class="fa fa-chevron-down" style="float:right;"></i>
                             </a>
                 </div>
                 <div class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" id="facet_collapse_{{field}}">
                     <div class="panel-body">
                         <div ng-repeat="item in facet_data[field]">
                             <div ng-show="facet_data[field][$index]['count']>0 &amp;&amp; $index < panel.facet_limit">
-                                <a href="" ng-click="set_facet_filter(field,facet_data[field][$index]['value']);" class="tab">{{facet_data[field][$index]['value']}} ({{facet_data[field][$index]['count']}})</a>
+                                <a href="" ng-click="set_facet_filter(field,facet_data[field][$index]['value']);" class="tab">{{facet_data[field][$index]['value'] | translate}} ({{facet_data[field][$index]['count']}})</a>
                                 <a ng-show="filter_close(field)" ng-click="delete_filter('terms',field)" style="float:right;"><i class="fa fa-times"></i></a>
                             </div>
                         </div>
