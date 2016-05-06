@@ -171,12 +171,7 @@ function (angular, $, _, appLevelRequire) {
       .when('/dashboard/:kbnType/:kbnId/:params', {
         templateUrl: 'app/partials/dashboard.html'
       })
-      .when('/logout', {
-        controller: 'LogoutCtrl'
-      })
-      .when('/login', {
-
-      })
+      // Login/logout are managed by location change
       .otherwise({
         redirectTo: 'dashboard'
       });
@@ -206,14 +201,20 @@ function (angular, $, _, appLevelRequire) {
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
   }]);
 
-  app.run(function($rootScope, $location, $timeout) {
-    $rootScope.$on('$routeChangeStart', function(event, current, previous) {
+  // Handle login and logout by checking route change events.
+  app.run(function($rootScope, $location, $http, $log) {
+    $rootScope.$on('$routeChangeStart', function() {
       if ($location.path() === '/login') {
-        $timeout(function (){
-          window.location = '../daobs/loginForm';
-        });
+        window.location = '../daobs/loginForm';
+      } else if ($location.path() === '/logout') {
+        $http.post('../logout', {cache: false}).then(
+          function () {
+            window.location = '../';
+          },
+          function () {
+            $log.warn("Error exiting from Solr or the app");
+          });
       }
-
     });
   });
 
