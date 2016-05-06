@@ -2,10 +2,8 @@ define([
     'angular',
     'jquery'
   ],
-  function (angular, $) {
+  function (angular) {
     'use strict';
-
-    var DEBUG = false; // DEBUG mode
 
     var module = angular.module('kibana.services');
 
@@ -19,7 +17,6 @@ define([
           getCurrentUserInfo: function() {
             var deferred = $q.defer();
             $http.get('../daobs/userDetails').success(function (data) {
-              console.log(data);
               currentUser = data;
               deferred.resolve(data);
             }).error(function(response) {
@@ -35,5 +32,4 @@ define([
         };
       }
     ]);
-
   });
