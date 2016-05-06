@@ -9,11 +9,18 @@
   <div class="row">
     <div ng-class="{'col-xs-2':panel.field_list}" ng-show="panel.field_list">
       <div class="sidebar-nav">
-        <h5>Fields <i class=" fa fa-chevron-circle-left pointer " ng-click="panel.field_list = !panel.field_list" bs-tooltip="'Hide field list'" ng-show="panel.field_list"></i></h5>
+        <h5>
+          <span translate="">Fields</span>
+          <i class=" fa fa-chevron-circle-left pointer " ng-click="panel.field_list = !panel.field_list" bs-tooltip="'{{'hideFieldList' | translate}}'" ng-show="panel.field_list"></i></h5>
         <ul class="list-unstyled" style="{{panel.overflow}}:{{panel.height || row.height}};overflow-y:auto;overflow-x:hidden;">
           <li ng-style="panel.style" ng-repeat="field in panel.important_fields">
             <i class="pointer" ng-class="{'fa fa-check-square-o fa-3': _.contains(panel.fields,field),'fa fa-square-o fa-3': !_.contains(panel.fields,field)}" ng-click="toggle_field(field)"></i>
-            <a class="pointer" data-unique="1" bs-popover data-auto-close="1" data-content-template="app/panels/table/micropanel.html" data-placement="right" ng-click="toggle_micropanel(field,true)" ng-class="{label: _.contains(panel.fields,field)}">{{field}}</a>
+            <a class="pointer" data-unique="1"
+               bs-popover data-auto-close="1"
+               data-content-template="app/panels/table/micropanel.html"
+               data-placement="right"
+               ng-click="toggle_micropanel(field,true)"
+               ng-class="{label: _.contains(panel.fields,field)}">{{field | translate}}</a>
           </li>
         </ul>
       </div>
@@ -28,8 +35,12 @@
           <i ng-click="panel.offset = (panel.offset - panel.size)" ng-show="panel.offset > 0" class="fa fa-arrow-left pointer"></i>
         </div>
         <div class="col-sm-8 col-md-8" style="text-align:center">
-          <strong>{{hits > 0 ? panel.offset+1 : panel.offset}}</strong> to <strong>{{dashboard.numberWithCommas(panel.offset + data.slice(panel.offset,panel.offset+panel.size).length)}}</strong>
-          <small> of {{dashboard.numberWithCommas(data.length)}} available for paging</small>
+          <strong>{{hits > 0 ? panel.offset+1 : panel.offset}}</strong>
+          {{'to' | translate}}
+          <strong>{{dashboard.numberWithCommas(panel.offset + data.slice(panel.offset,panel.offset+panel.size).length)}}</strong>
+          <small> {{'of' | translate}} {{dashboard.numberWithCommas(data.length)}}
+            {{'availableForPaging' | translate}}
+          </small>
         </div>
         <div class="col-sm-1 col-md-1" style="text-align:left">
           <i ng-click="panel.offset = (panel.offset + panel.size)" ng-show="data.length > panel.offset+panel.size" class="fa fa-arrow-right pointer"></i>
@@ -38,14 +49,15 @@
 
       <table class="table-hover table table-condensed" ng-style="panel.style">
         <thead ng-show="panel.header">
-          <tr><th ng-show="panel.fields.length<1">message (select columns from the list to the left)</th>
+          <tr>
+            <th ng-show="panel.fields.length<1" translate="">chooseFields</th>
           <th style="white-space:nowrap" ng-repeat="field in panel.fields">
             <i ng-show="!$first" class="pointer link fa fa-caret-left" ng-click="_.move(panel.fields,$index,$index-1)"></i>
-            <span class="pointer" ng-click="set_sort(field)" ng-show="panel.sortable">
-              {{field}}
+            <span class="pointer" ng-click="set_sort(field)" ng-show="panel.sortable" title="{{field}}">
+              {{field | translate}}
               <i ng-show="field == panel.sort[0]" class="pointer link" ng-class="{'fa fa-chevron-up': panel.sort[1] == 'asc','fa fa-chevron-down': panel.sort[1] == 'desc'}"></i>
             </span>
-            <span ng-show="!panel.sortable">{{field}}</span>
+            <span ng-show="!panel.sortable" title="{{field}}">{{field | translate}}</span>
             <i ng-show="!$last" class="pointer link fa fa-caret-right" ng-click="_.move(panel.fields,$index,$index+1)"></i>
           </th>
           <!-- Hyperlink column header -->
@@ -70,24 +82,24 @@
           <tr ng-show="event.kibana.details">
             <td colspan="{{panel.fields.length}}" ng-switch="event.kibana.view">
               <span>
-                View:
-                <a class="link" ng-class="{'strong':event.kibana.view == 'table'}" ng-click="event.kibana.view = 'table'">Table</a> /
+                <span translate="">View</span>
+                <a class="link" ng-class="{'strong':event.kibana.view == 'table'}" ng-click="event.kibana.view = 'table'" translate="">table</a> /
                 <a class="link" ng-class="{'strong':event.kibana.view == 'json'}" ng-click="event.kibana.view = 'json'">JSON</a> /
-                <a class="link" ng-class="{'strong':event.kibana.view == 'raw'}" ng-click="event.kibana.view = 'raw'">Raw</a>
+                <a class="link" ng-class="{'strong':event.kibana.view == 'raw'}" ng-click="event.kibana.view = 'raw'" translate="">Raw</a>
                 <i class="link pull-right fa fa-chevron-up" ng-click="toggle_details(event)"></i>
               </span>
               <table class="table table-bordered table-condensed" ng-switch-when="table">
                 <thead>
-                  <tr><th>Field</th>
-                  <th>Action</th>
-                  <th>Value</th>
+                  <tr><th translate="">Field</th>
+                  <th translate="">Action</th>
+                  <th translate="">Value</th>
                 </tr></thead>
                 <tbody><tr ng-repeat="(key,value) in event.kibana._source" ng-class-odd="'odd'">
-                  <td>{{key}}</td>
+                  <td title="{{key}}">{{key | translate}}</td>
                   <td style="white-space:nowrap">
-                    <i class="fa fa-search" ng-click="build_search(key,value)" bs-tooltip="'Add filter to match this value'"></i>
-                    <i class="fa fa-ban" ng-click="build_search(key,value,true)" bs-tooltip="'Add filter to NOT match this value'"></i>
-                    <i class="fa fa-th" ng-click="toggle_field(key)" bs-tooltip="'Toggle table column'"></i>
+                    <i class="fa fa-search" ng-click="build_search(key,value)" bs-tooltip="'{{'addFilterForThisValue' | translate}}'"></i>
+                    <i class="fa fa-ban" ng-click="build_search(key,value,true)" bs-tooltip="'{{'addFilterToNotMatchThisValue' | translate}}'"></i>
+                    <i class="fa fa-th" ng-click="toggle_field(key)" bs-tooltip="'{{'toggleCols' | translate}}'"></i>
                     <!-- Couchbase -->
                     <i class="fa fa-play" data-unique="1" ng-if="panel.enableCouchbase" ng-click="lookupCouchbase(key,value)" bs-popover data-content-template="app/panels/table/lookup_couchbase.html" data-placement="right" data-auto-close="1" data-animatin="am-fade-and-scale"></i>
                   </td>
@@ -108,8 +120,13 @@
           <i ng-click="panel.offset = (panel.offset - panel.size)" ng-show="panel.offset > 0" class="fa fa-arrow-left pointer"></i>
         </div>
         <div class="col-sm-4 col-md-4" style="text-align:center">
-          <strong>{{hits > 0 ? panel.offset+1 : panel.offset}}</strong> to <strong>{{dashboard.numberWithCommas(panel.offset + data.slice(panel.offset,panel.offset+panel.size).length)}}</strong>
-          <small> of {{dashboard.numberWithCommas(data.length)}} available for paging</small>
+          <strong>{{hits > 0 ? panel.offset+1 : panel.offset}}</strong>
+          {{'to' | translate}}
+          <strong>{{dashboard.numberWithCommas(panel.offset + data.slice(panel.offset,panel.offset+panel.size).length)}}</strong>
+          <small>
+          {{'of' | translate}}
+          {{dashboard.numberWithCommas(data.length)}}
+          {{'availableForPaging' | translate}}</small>
         </div>
         <div class="col-sm-1 col-md-1" style="text-align:left">
           <i ng-click="panel.offset = (panel.offset + panel.size)" ng-show="data.length > panel.offset+panel.size" class="fa fa-arrow-right pointer"></i>

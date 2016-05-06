@@ -64,7 +64,103 @@ function (angular, $, _, appLevelRequire) {
     }
   };
 
-  app.config(function ($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider) {
+  /**
+   * Translation loader which first loads static files
+   * for translating the application and then (optionnaly)
+   * load the current dashboard translation file.
+   */
+  app.factory('bananaTranslationLoader', function ($http, $q) {
+    return function (options) {
+
+      if (!options || (!angular.isArray(options.files) && (!angular.isString(options.prefix) || !angular.isString(options.suffix)))) {
+        throw new Error('Couldn\'t load static files, no files and prefix or suffix specified!');
+      }
+
+      if (!options.files) {
+        options.files = [{
+          prefix: options.prefix,
+          suffix: options.suffix
+        }];
+      }
+
+      var load = function (file) {
+        if (!file || (!angular.isString(file.prefix) || !angular.isString(file.suffix))) {
+          throw new Error('Couldn\'t load static file, no prefix or suffix specified!');
+        }
+
+        return $http(angular.extend({
+              url: [
+                file.prefix,
+                options.key,
+                file.suffix
+              ].join(''),
+              method: 'GET',
+              cache: true,
+              params: ''
+            }, options.$http))
+          .then(function(result) {
+            return result.data;
+          }, function () {
+            return $q.reject(options.key);
+          });
+      };
+
+      var promises = [],
+        length = options.files.length;
+
+      for (var i = 0; i < length; i++) {
+        promises.push(load({
+           prefix: options.files[i].prefix,
+           key: options.key,
+           suffix: options.files[i].suffix
+         }));
+      }
+
+
+      if (options.id) {
+        promises.push($http({
+           url: options.config.solr + options.config.banana_index +
+                '/select?wt=json&q=+type:translation +id:"' + options.id + '"',
+           method: "GET"
+         }).then(function (response) {
+          var docs = response.data.response.docs;
+          for (var i = 0; i < docs.length; i++) {
+            for (var p in docs[i]) {
+              if (docs[i].hasOwnProperty(p) && p === ('lang_' + options.key)) {
+                return angular.fromJson(docs[i][p]);
+              }
+            }
+          }
+          return {};
+          }, function () {
+            return $q.reject(options.key);
+          })
+        );
+      }
+
+      return $q.all(promises)
+        .then(function (data) {
+          var length = data.length,
+            mergedData = {};
+
+          for (var i = 0; i < length; i++) {
+            for (var key in data[i]) {
+              mergedData[key] = data[i][key];
+            }
+          }
+
+          return mergedData;
+        });
+    };
+  });
+  app.constant("translationConfig", {files: [{
+    prefix: 'app/i18n/',
+    suffix: '.json'
+  },{
+    prefix: '../assets/i18n/',
+    suffix: '.json'
+  }]});
+  app.config(function ($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, translationConfig) {
     $routeProvider
       .when('/dashboard', {
         templateUrl: 'app/partials/dashboard.html'
@@ -92,15 +188,13 @@ function (angular, $, _, appLevelRequire) {
     register_fns.filter     = $filterProvider.register;
 
     // Set translation provider to load JSON file
-    $translateProvider.useStaticFilesLoader({files: [{
-      prefix: 'app/i18n/',
-      suffix: '.json'
-    },{
-      prefix: '../assets/i18n/',
-      suffix: '.json'
-    }]});
-    $translateProvider.preferredLanguage('en');
-
+    $translateProvider
+      .useLoader('bananaTranslationLoader', translationConfig)
+      .registerAvailableLanguageKeys(['en', 'fr'], {
+        'fr': 'fr',
+        '*': 'en'
+      })
+      .determinePreferredLanguage();
   });
 
   // $http requests in Angular 1.0.x include the 'X-Requested-With' header
@@ -177,7 +271,6 @@ function (angular, $, _, appLevelRequire) {
 
             $rootScope.noHeader = $location.search().noHeader !== undefined;
             $rootScope.readonly = $location.search().readonly !== undefined;
-
 
             $rootScope.requireContext = appLevelRequire;
             $rootScope.require = function (deps, fn) {

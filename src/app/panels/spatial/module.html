@@ -13,7 +13,7 @@
             <button ngeo-btn
                     type="button"
                     ng-model="filterInteraction.active"
-                    alt="Enable to draw filter">
+                    alt="{{'enableToDrawFilter' | translate}}">
               <i class="fa"
                  ng-class="filterInteraction.active ? 'fa-eraser' : 'fa-pencil-square-o'"></i>
             </button>
@@ -27,7 +27,7 @@
         <li ng-repeat="l in legend">
           <i class="fa fa-square"
              style="color: {{l.color}}"></i>
-          {{l.label}}
+          {{l.label | translate}}
         </li>
       </ul>
     </div>

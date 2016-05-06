@@ -162,9 +162,9 @@ body.modal-open { overflow:inherit; padding-right:inherit !important; }
 .modal-body h4{
   /*margin-top: 33px;*/
 }
-.modal-body select{
+/*.modal-body select{
   margin-bottom: 10px;
-}
+}*/
 
 .datepicker.dropdown-menu {
   width: 250px;
@@ -325,7 +325,7 @@ form.input-append, form.input-prepend{
 }
 .table-doc-table{
   overflow-x:auto !important;
-  overflow-y:auto !important; 
+  overflow-y:auto !important;
 }
 .filter-must{
   padding-bottom: 2px;
