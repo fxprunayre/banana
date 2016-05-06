@@ -50,7 +50,7 @@ function (angular, app, $, _, kbn, moment, timeSeries) {
   var module = angular.module('kibana.panels.histogram', []);
   app.useModule(module);
 
-  module.controller('histogram', function($scope, $q, querySrv, dashboard, filterSrv) {
+  module.controller('histogram', function($scope, $q, $translate, querySrv, dashboard, filterSrv) {
     $scope.panelMeta = {
       modals : [
         {
@@ -209,7 +209,7 @@ function (angular, app, $, _, kbn, moment, timeSeries) {
 
       var request = $scope.sjs.Request().indices(dashboard.indices[segment]);
       $scope.panel.queries.ids = querySrv.idsByMode($scope.panel.queries);
-      
+
 
       $scope.panel.queries.query = "";
       // Build the query
@@ -480,7 +480,7 @@ function (angular, app, $, _, kbn, moment, timeSeries) {
 
   });
 
-  module.directive('histogramChart', function(dashboard, filterSrv) {
+  module.directive('histogramChart', function(dashboard, filterSrv, $translate) {
     return {
       restrict: 'A',
       template: '<div></div>',
@@ -521,7 +521,7 @@ function (angular, app, $, _, kbn, moment, timeSeries) {
               show: scope.panel['y-axis'],
               min: scope.panel.min_value? scope.panel.min_value : null, // TODO - make this adjusted dynamicmally, and add it to configuration panel
               max: scope.panel.max_value? scope.panel.max_value: scope.panel.percentage && scope.panel.stack ? 100 : null,
-              axisLabel: scope.panel.mode
+              axisLabel: $translate.instant(scope.panel.mode)
             };
             if (scope.panel.logAxis) {
               _.defaults(yAxisConfig, {
@@ -584,7 +584,7 @@ function (angular, app, $, _, kbn, moment, timeSeries) {
                 max: _.isUndefined(scope.range.to) ? null : scope.range.to.getTime(),
                 timeformat: time_format(scope.panel.interval),
                 label: "Datetime",
-                axisLabel: filterSrv.getTimeField(),
+                axisLabel: $translate.instant(filterSrv.getTimeField()),
               },
               grid: {
                 backgroundColor: null,
@@ -660,7 +660,7 @@ function (angular, app, $, _, kbn, moment, timeSeries) {
             if (item.series.info.alias || scope.panel.tooltip.query_as_alias) {
               group = '<small style="font-size:0.9em;">' +
                 '<i class="fa fa-circle" style="color:'+item.series.color+';"></i>' + ' ' +
-                (item.series.info.alias || item.series.info.query)+
+                ($translate.instant(item.series.info.alias) || item.series.info.query)+
               '</small><br>';
             } else {
               group = kbn.query_color_dot(item.series.color, 15) + ' ';

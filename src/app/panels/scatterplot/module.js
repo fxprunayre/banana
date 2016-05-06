@@ -70,7 +70,7 @@ define([
             // Show progress by displaying a spinning wheel icon on panel
             $scope.panelMeta.loading = true;
             delete $scope.panel.error;
-            
+
             var request, results;
             // Set Solr server
             $scope.sjs.client.server(dashboard.current.solr.server + dashboard.current.solr.core_name);
@@ -165,7 +165,7 @@ define([
 
     });
 
-    module.directive('scatterplot', function() {
+    module.directive('scatterplot', function($translate) {
         return {
             restrict: 'E',
             link: function(scope, element) {
@@ -193,7 +193,7 @@ define([
                         right: 20,
                         bottom: 100,
                         left: 50
-                    }, 
+                    },
                     width = parent_width - margin.left - margin.right;
 
                     height = height - margin.top - margin.bottom;
@@ -245,7 +245,7 @@ define([
                         .attr("transform", "translate(" + ((width / 2) - margin.left) + " ," + 30+ ")")
                         .style("text-anchor", "middle")
                         .style("font-size","12px")
-                        .text(scope.panel.xaxis);
+                        .text($translate.instant(scope.panel.xaxis));
 
                     svg.append("g")
                         .attr("class", "y axis")
@@ -258,7 +258,7 @@ define([
                         .attr("dy", ".71em")
                         .style("text-anchor", "end")
                         .style("font-size","12px")
-                        .text(scope.panel.yaxis);
+                        .text($translate.instant(scope.panel.yaxis));
 
                     svg.selectAll(".dot")
                         .data(scope.data)
@@ -276,8 +276,9 @@ define([
                         }).on("mouseover", function(d) {
                             var field_type = d[scope.panel.field_type] ? d[scope.panel.field_type] : "";
                             $tooltip
-                                .html('<i class="icon-circle" style="color:' + color(d[scope.panel.field_type]) + ';"></i>' + ' ' +
-                                    field_type + " (" + d[scope.panel.xaxis] + ", " + d[scope.panel.yaxis] + ")<br>")
+                                .html('<i class="icon-circle" style="color:' + color(d[scope.panel.field_type]) + ';"></i> ' +
+                                      $translate.instant(field_type) +
+                                      " (" + d[scope.panel.xaxis] + ", " + d[scope.panel.yaxis] + ")<br>")
                                 .place_tt(d3.event.pageX, d3.event.pageY);
                         })
                         .on("mouseout", function() {
@@ -297,7 +298,7 @@ define([
                             .attr("dy", ".35em")
                             .style("text-anchor", "end")
                             .text(function(d) {
-                                return d;
+                                return $translate.instant(d);
                             });
 
                         legend.append("rect")

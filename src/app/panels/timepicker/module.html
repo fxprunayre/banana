@@ -12,7 +12,7 @@
           <input type="text" class="form-controler form-control timepicker-time-input" ng-change="time_check()" size="6"  ng-model="timepicker.from.time" data-time-format="HH:mm:ss" data-time-type="string" data-autoclose="1" name="time2" bs-timepicker>
         </form>
       </div>
-      <span class="to-txt">to</span>
+      <span class="to-txt" translate="">to</span>
       <div class="timepicker-block" style="margin-left:5px">
         <form class="nomargin">
           <input type="text" class="form-controler form-control timepicker-date-input" ng-change="time_check()" size="8" ng-model="timepicker.to.date" data-date-format="yyyy-MM-dd" bs-datepicker>
@@ -50,24 +50,28 @@
   <div class="row" ng-show="filterSrv.idsByType('time').length < 1">
     <div>
       <div class="col-sm-11 col-md-11">
-        <h4>No time filter present</h4>
+        <h4 translate="">noTimeFilter</h4>
       </div>
     </div>
   </div>
   <div class="nomargin row">
     <div class="small col-sm-12 col-md-12 settime-liks" ng-show="filterSrv.idsByType('time').length > 0">
-      <a class="link" ng-click="set_mode('relative')" ng-class="{'strong': (panel.mode == 'relative')}">Relative</a> |
-      <a class="link" ng-click="set_mode('absolute')" ng-class="{'strong': (panel.mode == 'absolute')}">Absolute</a> |
-      <a class="link" ng-click="set_mode('since')" ng-class="{'strong': (panel.mode == 'since')}">Since</a>
+      <a class="link" ng-click="set_mode('relative')" ng-class="{'strong': (panel.mode == 'relative')}" translate="">Relative</a> |
+      <a class="link" ng-click="set_mode('absolute')" ng-class="{'strong': (panel.mode == 'absolute')}" translate="">Absolute</a> |
+      <a class="link" ng-click="set_mode('since')" ng-class="{'strong': (panel.mode == 'since')}" translate="">Since</a>
       <span ng-hide="panel.mode == 'absolute' || panel.mode == 'none'"> |
-        <input type="checkbox" class="auto-refresh-chkbox" ng-model="panel.refresh.enable" ng-change="refresh();"> Auto-refresh
+        <label>
+        <input type="checkbox" class="auto-refresh-chkbox" ng-model="panel.refresh.enable" ng-change="refresh();">
+        {{'autorefresh' | translate}}
+        </label>
         <span ng-class="{'ng-cloak': !panel.refresh.enable}">
-          every <a title="<small>Auto-refresh Settings</small>" style="cursor:pointer"  data-placement="bottom"  data-animation="am-flip-x" data-template="app/panels/timepicker/refreshctrl.html" bs-popover="popover">{{panel.refresh.interval}}s</a>.
+          {{'every' | translate}}
+          <a title="{{'autorefreshSettings' | translate}}" style="cursor:pointer"  data-placement="bottom"  data-animation="am-flip-x" data-template="app/panels/timepicker/refreshctrl.html" bs-popover="popover">{{panel.refresh.interval}}s</a>.
         </span>
       </span>
     </div>
     <div class="small col-sm-12 col-md-12" ng-show="filterSrv.idsByType('time').length < 1">
-      <a class="btn btn-default btn-sm" ng-click="time_apply()">Create a time filter</a>
+      <a class="btn btn-default btn-sm" ng-click="time_apply()" translate="">createTimeFilter</a>
     </div>
   </div>
 </div>

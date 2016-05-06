@@ -21,7 +21,10 @@ function (angular, kbn) {
             _t = '<i class="fa fa-'+(attrs.icon||'question-circle')+'" bs-tooltip="\''+
             kbn.addslashes(elem.text())+'\'" data-placement="'+attrs['placement']+'" container="body"></i>';
           }
-          
+          // Remove extra slashes added TODO: Improve
+          if (_t.indexOf('{{') !== -1) {
+            _t = _t.replace(/\\'/g, '\'');
+          }
           elem.replaceWith($compile(angular.element(_t))(scope));
         }
       };

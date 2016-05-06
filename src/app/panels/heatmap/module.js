@@ -1,4 +1,25 @@
 /*
+ * Copyright 2014-2016 European Environment Agency
+ *
+ * Licensed under the EUPL, Version 1.1 or – as soon
+ * they will be approved by the European Commission -
+ * subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance
+ * with the Licence.
+ * You may obtain a copy of the Licence at:
+ *
+ * https://joinup.ec.europa.eu/community/eupl/og_page/eupl
+ *
+ * Unless required by applicable law or agreed to in
+ * writing, software distributed under the Licence is
+ * distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.
+ * See the Licence for the specific language governing
+ * permissions and limitations under the Licence.
+ */
+
+/*
 ## HeatMap D3 Panel
 */
 define([
@@ -163,14 +184,14 @@ define([
                 $scope.init_arrays();
 
                 _.each(facets, function(d, i) {
-                    // build the arrays to be used 
+                    // build the arrays to be used
 
                     if(!flipped) {
                         $scope.row_labels.push(d.value);
                         $scope.hcrow.push($scope.row_labels.length);
                     } else {
                         $scope.col_labels.push(d.value);
-                        $scope.hccol.push($scope.col_labels.length);                    
+                        $scope.hccol.push($scope.col_labels.length);
                     }
 
                     _.each(d.pivot, function(p) {
@@ -194,7 +215,7 @@ define([
 
                             entry.row = i + 1;
                             entry.col = index + 1;
-                        } else {                 
+                        } else {
                             if($scope.row_labels.indexOf(v) === -1) {
                                 $scope.row_labels.push(v);
                                 $scope.hcrow.push($scope.row_labels.length);
@@ -246,7 +267,7 @@ define([
 
             $scope.populate_modal = function (request) {
                 $scope.inspector = angular.toJson(JSON.parse(request.toString()), true);
-            };     
+            };
 
             $scope.validateLimit = function() {
                 var el = $('#rows_limit');
@@ -265,7 +286,7 @@ define([
 
         });
 
-        module.directive('heatmapChart', function () {
+        module.directive('heatmapChart', function ($translate) {
             return {
                 restrict: 'E',
                 link: function (scope, element) {
@@ -277,7 +298,7 @@ define([
                     angular.element(window).bind('resize', function () {
                         render_panel();
                     });
-                    
+
                     // Function for rendering panel
                     function render_panel() {
                         element.html('<div id="' + scope.generated_id +'" class="popup hidden"><p><span id="value"></p></div>');
@@ -319,7 +340,7 @@ define([
 
                         function color(shift) {
                             if (shift >= 0) {return d3.hsl(cell_color).darker(brightrange(shift));}
-                            else {return d3.hsl(cell_color).brighter(brightrange(-shift));}             
+                            else {return d3.hsl(cell_color).brighter(brightrange(-shift));}
                         }
 
                         var hcrow, hccol, rowLabel, colLabel;
@@ -343,9 +364,9 @@ define([
                         });
 
                         var colorScale   = d3.scale.quantile().domain([0, 10]).range(colors);
-                        
+
                         var $tooltip = $('<div>');
-                    
+
                         var svg = d3.select(el).append("svg")
                             .attr("width", width + margin.left + margin.right)
                             .attr("height", height + margin.top + margin.bottom)
@@ -359,6 +380,7 @@ define([
                             .enter()
                             .append("text")
                             .text(function (d) {
+                                d = $translate.instant(d);
                                 if(d.length > 8) {
                                     return d.substring(0,8)+'..';
                                 } else {
@@ -384,7 +406,7 @@ define([
                                 d3.select(this).classed("cell-hover", false);
                                 d3.selectAll(".rowLabel_" + scope.generated_id).classed("text-highlight", false);
                                 d3.selectAll(".colLabel_" + scope.generated_id).classed("text-highlight", false);
-                                
+
                                 $tooltip.detach();
                             })
                             .on("click", function (d, i) {
@@ -399,10 +421,11 @@ define([
                             .enter()
                             .append("text")
                             .text(function (d) {
+                                d = $translate.instant(d);
                                 if(d.length > 6) {
                                     return d.substring(0,6)+'..';
                                 } else {
-                                    return d; 
+                                    return d;
                                 }
                             })
                             .attr("x", 0)
@@ -431,7 +454,7 @@ define([
                                 colSortOrder = !colSortOrder;
                                 sortbylabel("c", i, colSortOrder);
                             });
-                        
+
                         // Heatmap component
                         var heatMap = svg.append("g").attr("class", "g3") // jshint ignore:line
                             .selectAll(".cellg")
@@ -464,24 +487,26 @@ define([
                                     return ci === (d.col - 1);
                                 });
 
-                                $tooltip.html(rowLabel[d.row - 1] + "," + colLabel[d.col - 1] + " (" + scope.data[i].value + ")").place_tt(d3.event.pageX, d3.event.pageY);
+                                $tooltip.html($translate.instant(rowLabel[d.row - 1]) + "," +
+                                              $translate.instant(colLabel[d.col - 1]) +
+                                              " (" + scope.data[i].value + ")").place_tt(d3.event.pageX, d3.event.pageY);
                             })
                             .on("mouseout", function () {
                                 d3.select(this).classed("cell-hover", false);
                                 d3.selectAll(".rowLabel_" + scope.generated_id).classed("text-highlight", false);
                                 d3.selectAll(".colLabel_" + scope.generated_id).classed("text-highlight", false);
-                                
+
                                 $tooltip.detach();
                             });
-                    
+
                         // Function to sort the cells with respect to selected row or column
                         function sortbylabel(rORc, i, sortOrder) {
                             // rORc .. r for row, c for column
                             var t = svg.transition().duration(1200);
-                            
+
                             var values = []; // holds the values in this specific row
                             for(var j = 0; j < col_number; j++) { values.push(0); }
-                            
+
                             var sorted; // sorted is zero-based index
                             d3.selectAll(".c" + rORc + i + "_" + scope.generated_id)
                             .filter(function (ce) {
@@ -505,7 +530,7 @@ define([
                                     }
                                     return value;
                                 });
-                                
+
                                 t.selectAll(".cell_" + scope.generated_id)
                                 .attr("x", function (d) {
                                     return sorted.indexOf(d.col - 1) * cellSize;

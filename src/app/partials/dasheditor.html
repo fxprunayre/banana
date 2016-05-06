@@ -1,7 +1,28 @@
-  <div class="pull-right editor-title">Dashboard settings</div>
+  <!--
+  ~ Copyright 2014-2016 European Environment Agency
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon
+  ~ they will be approved by the European Commission -
+  ~ subsequent versions of the EUPL (the "Licence");
+  ~ You may not use this work except in compliance
+  ~ with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/community/eupl/og_page/eupl
+  ~
+  ~ Unless required by applicable law or agreed to in
+  ~ writing, software distributed under the Licence is
+  ~ distributed on an "AS IS" basis,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+  ~ either express or implied.
+  ~ See the Licence for the specific language governing
+  ~ permissions and limitations under the Licence.
+  -->
+
+<div class="pull-right editor-title">{{'dashboardSettings' | translate}}</div>
 
   <div ng-model="editor.index" bs-tabs="" class="edit-dash-settings">
-    <div ng-repeat="tab in ['General','Rows','Controls','Solr']" title="{{tab}}" bs-pane>
+    <div ng-repeat="tab in ['General','Rows','Controls','Solr', 'translations']" title="{{tab | translate}}" bs-pane>
     </div>
   </div>
   <!-- General tab -->
@@ -112,7 +133,7 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <h5 style="margin-top:20px; margin-bottom: 6px;">Allow saving to</h5>        
+        <h5 style="margin-top:20px; margin-bottom: 6px;">Allow saving to</h5>
       </div>
     </div>
     <div class="row">
@@ -144,22 +165,22 @@
       <div class="col-sm-2 col-md-2">
         <label class="small">Solr</label><input type="checkbox" ng-model="dashboard.current.loader.load_elasticsearch" ng-checked="dashboard.current.loader.load_elasticsearch">
       </div>
-      
+
       <div class="col-sm-3 col-md-3" ng-show="dashboard.current.loader.load_elasticsearch">
          <label class="small">Solr list size <tip>The maximum number of dashboards to show in the loading list for Solr stored dashboards under Load menu.</tip></label><input style="width:80px;" class="input-mini form-control" type="number" ng-model="dashboard.current.loader.load_elasticsearch_size">
       </div>
-      
+
     </div>
   </div>
   <!-- Solr tab -->
   <div ng-show="editor.index == 3">
     <div class="row">
       <div class="col-sm-12 col-md-12">
-        <h4>Server Settings</h4>        
+        <h4>Server Settings</h4>
       </div>
       <div class="col-md-12">
         <h6>Choose the server</h6>
-      </div> 
+      </div>
       <form>
         <div class="col-sm-5 col-md-5">
           <input type="radio" value="solr_server" ng-model="dashboard.current.server_type" id="solr_server" ng-checked="dashboard.current.server_type == 'solr_server'">  Solr Server</input>
@@ -197,6 +218,148 @@
     </div>
   </div>
 
+
+  <div ng-show="editor.index == 4">
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+        <h4>{{'defineTranslation' | translate}}</h4>
+
+        <form class="form-inline">
+          <div class="form-group">
+            <select class="form-control"
+                    placeholder="{{'defineTranslation' | translate}}"
+                    ng-model="dashboard.current.translation"
+                    ng-change="setTranslation()"
+                    ng-options="f.id as f.id for f in translationFiles"></select>
+
+            <button class="btn btn-default"
+                    ng-click="removeTranslation(dashboard.current.translation)"
+                    ng-disabled="dashboard.current.translation == null"
+                    title="{{'removeTranslation' | translate}}">
+              <i class="fa fa-times"></i>
+            </button>
+
+            <button class="btn btn-default"
+                    ng-click="createTranslation()"
+                    title="{{'createTranslation' | translate}}">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row" ng-show="translation">
+      <div class="col-sm-12 col-md-12">
+        <form class="form">
+          <div class="form-group">
+            <label for="title">
+              <span translate="">title</span>
+              <tip>{{'translationTitleHelp' | translate}}</tip>
+            </label>
+            <input type="text"
+                   class="form-control"
+                   ng-required=""
+                   ng-model="translation.id"
+                   id="title">
+          </div>
+
+          <div class="form-group">
+            <label>
+              <span translate="">languagesAvailable</span>{{translation.languages.join(', ')}}
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <span translate="">addAnotherLanguage</span>
+            </label>
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="languageToAdd">
+              <span class="input-group-btn">
+                <button class="btn btn-default"
+                      ng-click="addLanguage(languageToAdd); languageToAdd = ''">
+                  <i class="fa fa-plus"/>
+                </button>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="title"
+                   translate="">terms</label>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="{{'filter' | translate}}"
+                           ng-model="searchTerm"/>
+                  </th>
+                  <th ng-repeat="l in translation.languages">
+                    {{l}}
+                    <button class="btn btn-link"
+                            title="{{'removeLanguage' | translate}}"
+                            ng-click="removeLanguage(l)">
+                      <i class="fa fa-times text-danger"/>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="(key, value) in translation['lang_' + translation.languages[0]]"
+                    ng-show="searchTerm == '' || key.indexOf(searchTerm) !== -1">
+                  <td style="max-width: 180px;">{{key}}</td>
+                  <td ng-repeat="l in translation.languages">
+                    <input type="text"
+                           class="form-control"
+                           ng-model="translation['lang_' + l][key]">
+                  </td>
+                  <td>
+                    <button class="btn btn-link"
+                            title="{{'removeTerm' | translate}}"
+                            ng-click="removeTerm(key)">
+                      <i class="fa fa-times text-danger"/>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="{{translation.languages.length + 1}}">
+                    <span translate="">addTerm</span>
+                    <div class="input-group">
+                      <input type="text"
+                             class="form-control"
+                             ng-model="termToAdd">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default"
+                                  ng-click="addTerm(termToAdd); termToAdd = ''">
+                            <i class="fa fa-plus"/>
+                          </button>
+                          <button class="btn btn-default"
+                                  ng-click="addIndexFields()"
+                                  alt="{{'addFieldsToTermListHelp' | translate}}">
+                            <i class="fa fa-cog"/>
+                            <span translate="">addFieldsToTermList</span>
+                          </button>
+                        </span>
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <button class="btn btn-default"
+                  ng-click="saveTranslation()">
+            <i class="fa fa-save"/>
+            <span translate="">save</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
   <div class="modal-footer">
     <button ng-click="add_row(dashboard.current,row); reset_row();" class="btn btn-success" ng-show="editor.index == 1">Create Row</button>
     <button type="button" class="btn btn-danger" ng-click="editor.index=0;$hide();reset_panel();dashboard.refresh()">Close</button>

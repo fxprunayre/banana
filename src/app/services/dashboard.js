@@ -15,7 +15,9 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
 
   var module = angular.module('kibana.services');
 
-  module.service('dashboard', function($routeParams, $http, $rootScope, $injector, $location,
+  module.service('dashboard', function(
+    $routeParams, $http, $rootScope, $injector, $location,
+    $translate, translationConfig,
     sjsResource, timer, kbnIndex, alertSrv
   ) {
     // A hash of defaults to use when loading a dashboard
@@ -27,6 +29,7 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
       panel_hints: true,
       rows: [],
       services: {},
+      translation: null,
       loader: {
         dropdown_collections: false,
         save_gist: true,
@@ -259,6 +262,85 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
       return (current_zk != self.current.solr.zkHost);
     };
 
+    // Translation are stored in the dashboard collection.
+    // Each translation are described in a document composed of:
+    // * title: Id of the translation
+    // * en: JSON for english translations
+    // * ... other language code
+    //
+    // Load translation document list available
+    this.load_translations = function(id) {
+      return $http({
+        url: config.solr + config.banana_index +
+             '/select?wt=json&q=+type:translation +id:"' + (id || '*') + '"',
+        method: "GET",
+        transformResponse: function(response) {
+          response = angular.fromJson(response);
+          var docs = response.response.docs;
+          if (docs === undefined) {
+            console.warn('No translation found.');
+            return;
+          }
+          for (var i = 0; i < docs.length; i++) {
+            for (var p in docs[i]) {
+              if (docs[i].hasOwnProperty(p) && p.indexOf('lang_') === 0) {
+                docs[i][p] = angular.fromJson(docs[i][p]);
+              }
+            }
+          }
+          return docs;
+        }
+      });
+    };
+    this.load_translation = function(id) {
+      translationConfig.id = id;
+      translationConfig.config = config;
+      $translate.refresh();
+    };
+    this.save_translations = function(translation) {
+      var save = _.clone(translation);
+
+      var document = {
+        id: save.id,
+        type: 'translation',
+        user: 'guest',
+        group: 'guest',
+        languages: save.languages
+      };
+      for (var i = 0; i < save.languages.length; i ++) {
+        var l = 'lang_' + save.languages[i];
+        document[l] = angular.toJson(save[l]);
+      }
+      var request = sjs
+                    .Document(config.banana_index, document.type, save.id)
+                    .source(document);
+      sjs.client.server(config.solr + config.banana_index);
+
+      return request.doIndex(
+        function(result) {
+          return result;
+        },
+        function() {
+          return false;
+        }
+      );
+    };
+
+    this.remove_translations = function(id) {
+      sjs.client.server(config.solr + config.banana_index);
+
+      return sjs.Document(config.banana_index, 'dashboard', id).doDelete(
+        function(result) {
+          return result;
+        },
+        function() {
+          return false;
+        }
+      );
+    };
+
+
+
     // Since the dashboard is responsible for index computation, we can compute and assign the indices
     // here before telling the panels to refresh
     this.refresh = function() {
@@ -345,6 +427,11 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
 
       // Make sure the dashboard being loaded has everything required
       dashboard = dash_defaults(dashboard);
+
+      // Load any translation file required for this dashboard
+      if (dashboard.translation) {
+        this.load_translation(dashboard.translation);
+      }
 
       // If not using time based indices, use the default index
       if(dashboard.index.interval === 'none') {
@@ -466,6 +553,11 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
         method: "GET",
         transformResponse: function(response) {
           response = angular.fromJson(response);
+          var doc = response.response.docs[0];
+          if (doc === undefined) {
+            console.warn('No dashboard found.');
+            return;
+          }
           var source_json = angular.fromJson(response.response.docs[0].dashboard);
 
           if (DEBUG) { console.debug('dashboard: type=',type,' id=',id,' response=',response,' source_json=',source_json); }
@@ -532,6 +624,7 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
         user: 'guest',
         group: 'guest',
         title: save.title,
+        type: 'dashboard',
         dashboard: angular.toJson(save)
       });
 

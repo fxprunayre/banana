@@ -145,7 +145,7 @@ function (angular, app, _, $, kbn) {
       }
       facet += '&f.' + $scope.panel.field + '.facet.sort=' + ($scope.panel.sortBy || 'count');
 
-      var exclude_length = $scope.panel.exclude.length; 
+      var exclude_length = $scope.panel.exclude.length;
       var exclude_filter = '';
       if (exclude_length > 0 && $scope.panel.exclude[0] !== "") {
         for (var i = 0; i < exclude_length; i++) {
@@ -273,7 +273,7 @@ function (angular, app, _, $, kbn) {
           data:[[k,missing]],meta:"missing",color:'#aaa',opacity:0});
         $scope.data.push({label:'Other values',
           // data:[[k+1,results.facets.terms.other]],meta:"other",color:'#444'});
-          // TODO: Hard coded to 0 for now. Solr faceting does not provide 'other' value. 
+          // TODO: Hard coded to 0 for now. Solr faceting does not provide 'other' value.
           data:[[k+1,$scope.hits-sum]],meta:"other",color:'#444'});
 
         $scope.$emit('render');
@@ -325,7 +325,7 @@ function (angular, app, _, $, kbn) {
 
   });
 
-  module.directive('termsChart', function(querySrv,dashboard,filterSrv) {
+  module.directive('termsChart', function(querySrv,dashboard,filterSrv, $translate) {
     return {
       restrict: 'A',
       link: function(scope, elem) {
@@ -417,9 +417,10 @@ function (angular, app, _, $, kbn) {
               if(scope.panel.chart === 'pie') {
 
                 var labelFormat = function(label, series){
-                  return '<div ng-click="build_search(panel.field,\''+label+'\')'+
-                    ' "style="font-size:8pt;text-align:center;padding:2px;color:white;">'+
-                    label+'<br/>'+Math.round(series.percent)+'%</div>';
+                  return '<div ng-click="build_search(panel.field,\'' + label + '\') ' +
+                         '"style="font-size:8pt;text-align:center;padding:2px;color:white;">' +
+                         $translate.instant(label) + '<br/>' +
+                         Math.round(series.percent) + '%</div>';
                 };
                 // DEfulat style for labels that is implmented in jquery flot
                 // var position = "";
@@ -442,7 +443,7 @@ function (angular, app, _, $, kbn) {
                       show: true,
                       combine: {
                         color: '#999',
-                        label: 'The Rest'
+                        label: $translate.instant('theRest')
                       },
                       stroke: {
                         width: 0
@@ -497,7 +498,8 @@ function (angular, app, _, $, kbn) {
             $tooltip
               .html(
                 kbn.query_color_dot(item.series.color, 20) + ' ' +
-                item.series.label + " (" + dashboard.numberWithCommas(value.toFixed(scope.panel.decimal_points)) +")"
+                $translate.instant(item.series.label) +
+                " (" + dashboard.numberWithCommas(value.toFixed(scope.panel.decimal_points)) +")"
               )
               .place_tt(pos.pageX, pos.pageY);
           } else {
