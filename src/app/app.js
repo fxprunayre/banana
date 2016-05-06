@@ -262,15 +262,22 @@ function (angular, $, _, appLevelRequire) {
       .ready(function() {
         $('body').attr('ng-controller', 'DashCtrl');
         angular.bootstrap(document, apps_deps)
-          .invoke(['$rootScope', '$location',
-            function ($rootScope, $location) {
+          .invoke(['$rootScope', '$location', 'userService',
+            function ($rootScope, $location, userService) {
             _.each(pre_boot_modules, function (module) {
               _.extend(module, register_fns);
             });
             pre_boot_modules = false;
 
             $rootScope.noHeader = $location.search().noHeader !== undefined;
-            $rootScope.readonly = $location.search().readonly !== undefined;
+            $rootScope.readonly = $location.search().readonly !== undefined ||
+                                  userService.getUser() === null;
+
+            // Update readonly status based on authentication status
+            userService.getCurrentUserInfo().then(function(data) {
+              $rootScope.readonly = $location.search().readonly !== undefined ||
+                                    data.authenticated === false;
+            });
 
             $rootScope.requireContext = appLevelRequire;
             $rootScope.require = function (deps, fn) {
