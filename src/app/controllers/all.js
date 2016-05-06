@@ -1,6 +1,5 @@
 define([
   './dash',
   './dashLoader',
-  './row',
-  './logoutCtrl'
+  './row'
 ], function () {});
