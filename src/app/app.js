@@ -1,3 +1,24 @@
+/*
+ * Copyright 2014-2016 European Environment Agency
+ *
+ * Licensed under the EUPL, Version 1.1 or – as soon
+ * they will be approved by the European Commission -
+ * subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance
+ * with the Licence.
+ * You may obtain a copy of the Licence at:
+ *
+ * https://joinup.ec.europa.eu/community/eupl/og_page/eupl
+ *
+ * Unless required by applicable law or agreed to in
+ * writing, software distributed under the Licence is
+ * distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.
+ * See the Licence for the specific language governing
+ * permissions and limitations under the Licence.
+ */
+
 /**
  * main app level module
  */
@@ -63,6 +84,27 @@ function (angular, $, _, appLevelRequire) {
       break;
     }
   };
+  app.factory('httpInterceptor', function($q) {
+    return {
+      'request': function(c) {
+        var t = c.url.match('/.*/(.*)/select');
+        if (t && t.length > 0) {
+          c.url = c.url.replace(
+            '\/solr\/' + t[1] + '\/select',
+            '/api/search/' + t[1]);
+          // The proxy does not support POST
+          if (c.method === 'POST') {
+            c.method = 'GET';
+            c.url = c.url +
+                    (c.url.indexOf('?') === -1 ? '?' : '&') +
+                    c.data;
+          }
+        }
+        return c;
+      }
+    };
+  });
+
 
   /**
    * Translation loader which first loads static files
@@ -160,7 +202,11 @@ function (angular, $, _, appLevelRequire) {
     prefix: '../assets/i18n/',
     suffix: '.json'
   }]});
-  app.config(function ($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, translationConfig) {
+  app.config(function (
+      $routeProvider, $controllerProvider, $compileProvider, $httpProvider,
+      $filterProvider, $provide, $translateProvider, translationConfig) {
+    $httpProvider.interceptors.push('httpInterceptor');
+
     $routeProvider
       .when('/dashboard', {
         templateUrl: 'app/partials/dashboard.html'
@@ -205,9 +251,9 @@ function (angular, $, _, appLevelRequire) {
   app.run(function($rootScope, $location, $http, $log) {
     $rootScope.$on('$routeChangeStart', function() {
       if ($location.path() === '/login') {
-        window.location = '../daobs/loginForm';
-      } else if ($location.path() === '/logout') {
-        $http.post('../logout', {cache: false}).then(
+        window.location = '../api/signin-form';
+      } else if ($location.path() === '/signout') {
+        $http.post('../signout', {cache: false}).then(
           function () {
             window.location = '../';
           },
