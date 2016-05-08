@@ -10,13 +10,10 @@ define([
     module.factory('userService', ['$http', '$q',
       function($http, $q) {
         var currentUser = null;
-
-
         return {
-
           getCurrentUserInfo: function() {
             var deferred = $q.defer();
-            $http.get('../daobs/userDetails').success(function (data) {
+            $http.get('../api/me').success(function (data) {
               currentUser = data;
               deferred.resolve(data);
             }).error(function(response) {
