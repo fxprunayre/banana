@@ -3,7 +3,7 @@
       <label class="small">Mode</label>
       <!-- Banana: does not support 'min','mean','max', and 'total' modes yet -->
       <!-- <select ng-change="set_refresh(true)" class="form-control" ng-model="panel.mode" ng-options="f for f in ['count','min','mean','max','total','value']"></select> -->
-      <select ng-change="set_refresh(true)" class="form-control" ng-model="panel.mode" ng-options="f for f in ['count','values']"></select>
+      <select ng-change="set_refresh(true)" class="form-control" ng-model="panel.mode" ng-options="f for f in ['count','values', 'multivalues']"></select>
     </div>
     <div class="col-sm-2 col-md-2" ng-if="panel.mode != 'count'">
       <label class="small">Value Field</label>
@@ -18,10 +18,10 @@
     </div>
   </div>
   <!-- Row for Group By field when Mode is values -->
-  <div class="row" ng-show="panel.mode == 'values'">
+  <div class="row" ng-show="panel.mode != 'count'">
     <div class="col-sm-4 col-md-4"></div>
     <div class="col-sm-3 col-md-3">
-      <label class="small">Group By Field <tip>This field must be a single value field. Leave blank if you do not want to group the result.</tip></label>
+      <label class="small">Group By Field <tip>This field must be a single value field if using values mode. Leave blank if you do not want to group the result.</tip></label>
       <input ng-change="set_refresh(true)" placeholder="Optional" bs-typeahead ng-options="field for field in fields.list" type="text" class="form-control" ng-model="panel.group_field">
     </div>
     <!-- <div class="span3">

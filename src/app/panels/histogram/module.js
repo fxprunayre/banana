@@ -277,6 +277,21 @@ function (angular, app, $, _, kbn, moment, timeSeries) {
         if ($scope.panel.group_field) {
           values_mode_query += '&group=true&group.field=' + $scope.panel.group_field + '&group.limit=' + $scope.panel.max_rows;
         }
+      } else if ($scope.panel.mode === 'multivalues') {
+        // Create a JSON facet request by group then value then time
+        // This will support multivalue field
+        // TODO: if ($scope.panel.group_field) {
+        // TODO: add function
+        // TODO: Add range parameters
+        var jsonFacet =
+          {group: {type: 'terms', field: $scope.panel.group_field, limit: $scope.panel.max_rows,
+            // facet: {value: {type: 'terms', field: $scope.panel.value_field,
+              facet: {values:  {type: 'terms', field: time_field ,
+                facet: {value: 'min(' + $scope.panel.value_field + ')'}
+            }}
+          // }}
+        }};
+        values_mode_query = "&json.facet=" + angular.toJson(jsonFacet);
       }
 
       var mypromises = [];
@@ -350,6 +365,43 @@ function (angular, app, $, _, kbn, moment, timeSeries) {
                 time_series.addValue(entry_time, entry_count);
                 hits += entry_count; // The series level hits counter
                 $scope.hits += entry_count; // Entire dataset level hits counter
+              }
+            } else if ($scope.panel.mode === 'multivalues') {
+              if ($scope.panel.group_field) {
+                var groups = results[index].facets.group.buckets;
+                for (var j = 0; j < groups.length; j++) { // jshint ignore: line
+                  var group_time_series = new timeSeries.ZeroFilled({
+                    interval: _interval,
+                    start_date: _range && _range.from,
+                    end_date: _range && _range.to,
+                    fill_style: 'minimal'
+                  });
+                  hits = 0;
+
+                  // loop through each field group results
+                  var docs = groups[j].values.buckets;
+                  for (var k = 0; k < docs.length; k++) {
+                    entry_time = new Date(docs[k].val).getTime(); // convert to millisec
+                    entry_value = docs[k].value;
+                    group_time_series.addValue(entry_time, entry_value);
+                    hits += 1;
+                    $scope.hits += 1;
+                  }
+
+                  $scope.data[j] = {
+                    // info: querySrv.list[id],
+                    // Need to define chart info here according to the results, cannot use querySrv.list[id]
+                    info: {
+                      alias: groups[j].val,
+                      color: querySrv.colors[j],
+
+                    },
+                    time_series: group_time_series,
+                    hits: hits
+                  };
+                }
+              } else {
+                // TODO
               }
             } else if ($scope.panel.mode === 'values') {
               if ($scope.panel.group_field) {
