@@ -85,15 +85,20 @@ function (angular, $, _, appLevelRequire) {
     }
   };
   app.factory('httpInterceptor', function($q) {
+    var map = {
+      'select': 'search',
+      'update': 'update'
+    };
     return {
       'request': function(c) {
-        var t = c.url.match('/.*/(.*)/select');
+        // TODO: Updates
+        var t = c.url.match('/.*/(.*)/(select|update)');
         if (t && t.length > 0) {
           c.url = c.url.replace(
-            '\/solr\/' + t[1] + '\/select',
-            '/api/search/' + t[1]);
-          // The proxy does not support POST
-          if (c.method === 'POST') {
+            new RegExp('\/solr\/' + t[1] + '\/(select|update)'),
+            '/api/' + map[t[2]] + '/' + t[1]);
+          // The proxy for search does not support POST
+          if (t[2] === 'select' && c.method === 'POST') {
             c.method = 'GET';
             c.url = c.url +
                     (c.url.indexOf('?') === -1 ? '?' : '&') +
