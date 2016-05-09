@@ -257,8 +257,8 @@ function (angular, $, _, appLevelRequire) {
     $rootScope.$on('$routeChangeStart', function() {
       if ($location.path() === '/login') {
         window.location = '../api/signin-form';
-      } else if ($location.path() === '/signout') {
-        $http.post('../signout', {cache: false}).then(
+      } else if ($location.path() === '/logout') {
+        $http.post('../logout', {cache: false}).then(
           function () {
             window.location = '../';
           },
