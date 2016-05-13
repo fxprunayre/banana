@@ -89,14 +89,14 @@ function (angular, $, _, appLevelRequire) {
       'select': 'search',
       'update': 'update'
     };
+    var webapp = '${webapp.rootUrl}';
     return {
       'request': function(c) {
-        // TODO: Updates
         var t = c.url.match('/.*/(.*)/(select|update)');
         if (t && t.length > 0) {
           c.url = c.url.replace(
             new RegExp('\/solr\/' + t[1] + '\/(select|update)'),
-            '/api/' + map[t[2]] + '/' + t[1]);
+            'api/' + map[t[2]] + '/' + t[1]);
           // The proxy for search does not support POST
           if (t[2] === 'select' && c.method === 'POST') {
             c.method = 'GET';
@@ -104,12 +104,16 @@ function (angular, $, _, appLevelRequire) {
                     (c.url.indexOf('?') === -1 ? '?' : '&') +
                     c.data;
           }
+          c.url = (webapp != '' ? webapp : '') + c.url;
+        } else if (c.url.match('/solr/(.*)/admin') ||
+                   c.url.match('/solr/admin/cores')) {
+          // Redirect to urlrewrite
+          c.url = (webapp != '' ? webapp : '') + c.url.substring(1);
         }
         return c;
       }
     };
   });
-
 
   /**
    * Translation loader which first loads static files
@@ -256,7 +260,7 @@ function (angular, $, _, appLevelRequire) {
   app.run(function($rootScope, $location, $http, $log) {
     $rootScope.$on('$routeChangeStart', function() {
       if ($location.path() === '/login') {
-        window.location = '../api/signin-form';
+        window.location = '../#/login';
       } else if ($location.path() === '/logout') {
         $http.post('../logout', {cache: false}).then(
           function () {
